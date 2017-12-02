@@ -9,6 +9,8 @@ module Strings
   module Wrap
     DEFAULT_WIDTH = 80
 
+    LINE_BREAK = "\r\n+|\r+|\n+".freeze
+
     # Wrap a text into lines no longer than wrap_at length.
     # Preserves existing lines and existing word boundaries.
     #
@@ -24,7 +26,7 @@ module Strings
         return text
       end
       ansi_stack = []
-      text.split(NEWLINE, -1).map do |paragraph|
+      text.split(%r{#{LINE_BREAK}}, -1).map do |paragraph|
         format_paragraph(paragraph, wrap_at, ansi_stack)
       end * NEWLINE
     end

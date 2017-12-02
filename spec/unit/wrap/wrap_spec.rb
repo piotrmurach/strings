@@ -24,6 +24,19 @@ RSpec.describe Strings::Wrap, '.wrap' do
       ].join("\n"))
     end
 
+    it "collapses multiple line breaks " do
+      text = "some \r\n\n\n\nunbreakable\n\n\n\n  \r\r\rcontent \t"
+      expect(Strings::Wrap.wrap(text, 5)).to eq([
+        "some ",
+        "unbre",
+        "akabl",
+        "e",
+        "  ",
+        "conte",
+        "nt "
+      ].join("\n"))
+    end
+
     it "preserves newlines" do
       text = "It is not down\n on any map;\n true places never are."
       expect(Strings::Wrap.wrap(text, 10)).to eq([
@@ -93,11 +106,11 @@ RSpec.describe Strings::Wrap, '.wrap' do
     it "preserves newlines for both prefix and postfix" do
       text = "\n\nラドクリフ、マラソン五輪代表に1万m出場にも含み\n\n\n"
       expect(Strings::Wrap.wrap(text, 10)).to eq([
-        "\n\nラドクリフ",
+        "\nラドクリフ",
         "、マラソン",
         "五輪代表に",
         "1万m出場に",
-        "も含み\n\n\n"
+        "も含み\n"
       ].join("\n"))
     end
   end
