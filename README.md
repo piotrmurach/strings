@@ -9,10 +9,10 @@
 
 [gem]: http://badge.fury.io/rb/strings
 [travis]: http://travis-ci.org/piotrmurach/strings
-[appveyor]: https://ci.appveyor.com/project/piotrmurach/tty-spinner
+[appveyor]: https://ci.appveyor.com/project/piotrmurach/strings
 [codeclimate]: https://codeclimate.com/github/piotrmurach/strings/maintainability
-[coverage]: https://coveralls.io/r/piotrmurach/tty-spinner
-[inchpages]: http://inch-ci.org/github/piotrmurach/tty-spinner
+[coverage]: https://coveralls.io/r/piotrmurach/strings
+[inchpages]: http://inch-ci.org/github/piotrmurach/strings
 
 > The `Strings` is a set of useful functions such as wrap, truncate, indent, and many more for transforming strings.
 
