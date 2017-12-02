@@ -1,8 +1,18 @@
 # Strings
 
 [![Gem Version](https://badge.fury.io/rb/strings.svg)][gem]
+[![Build Status](https://secure.travis-ci.org/piotrmurach/strings.svg?branch=master)][travis]
+[![Build status](https://ci.appveyor.com/api/projects/status/e11tn1fgjwnfwp3r?svg=true)][appveyor]
+[![Maintainability](https://api.codeclimate.com/v1/badges/4ca50e480f42af80678e/maintainability)][codeclimate]
+[![Coverage Status](https://coveralls.io/repos/piotrmurach/strings/badge.svg)][coverage]
+[![Inline docs](http://inch-ci.org/github/piotrmurach/strings.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/strings
+[travis]: http://travis-ci.org/piotrmurach/strings
+[appveyor]: https://ci.appveyor.com/project/piotrmurach/tty-spinner
+[codeclimate]: https://codeclimate.com/github/piotrmurach/strings/maintainability
+[coverage]: https://coveralls.io/r/piotrmurach/tty-spinner
+[inchpages]: http://inch-ci.org/github/piotrmurach/tty-spinner
 
 > The `Strings` is a set of useful functions such as wrap, truncate, indent, and many more for transforming strings.
 
