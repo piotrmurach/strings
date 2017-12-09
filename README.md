@@ -44,18 +44,20 @@ Or install it yourself as:
 
 * [1. Usage](#1-usage)
 * [2. API](#2-api)
- * [2.1 truncate](#21-truncate)
+  * [2.1 truncate](#21-truncate)
+  * [2.2 wrap](#22-wrap)
 
 ## 1. Usage
 
+To wrap a text use [wrap](#22-wrap):
+
 ```ruby
 text = "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
-Strings.wrap text, 30
+Strings.wrap(text, 30)
 # =>
 #  "Think not, is my eleventh"
 #  "commandment; and sleep when"
 #  "you can, is my twelfth."
-
 ```
 
 ## 2. API
@@ -109,6 +111,57 @@ Strings.truncate(text, 12)   # => "ラドクリフ…"
 text = "I try \e[34mall things\e[0m, I achieve what I can"
 Strings.truncate(text, 18)
 # => "I try \e[34mall things\e[0m…"
+```
+
+### 2.2 wrap
+
+**Strings::Wrap** allows you to wrap text into lines no longer than `wrap_at` argument length. The `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
+
+Given the following text:
+
+```ruby
+text "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
+```
+
+Then to wrap the text to given length do:
+
+```ruby
+Strings.wrap(text, 30)
+# =>
+#  "Think not, is my eleventh"
+#  "commandment; and sleep when"
+#  "you can, is my twelfth."
+```
+
+Similarly, to handle `UTF-8` text do:
+
+```ruby
+text = "ラドクリフ、マラソン五輪代表に1万m出場にも含み"
+Strings.wrap(text, 8)
+# =>
+#  "ラドクリ"
+#  "フ、マラ"
+#  "ソン五輪"
+#  "代表に1"
+#  "万m出場"
+#  "にも含み"
+```
+
+**Strings::Wrap** knows how to handle ANSI codes:
+
+```ruby
+ansi_text = "\e[32;44mIgnorance is the parent of fear.\e[0m"
+Strings.wrap(ansi_text, 14)
+# =>
+#  "\e[32;44mIgnorance is \e[0m"
+#  "\e[32;44mthe parent of \e[0m"
+#  "\e[32;44mfear.\e[0m"
+```
+
+You can also call `wrap` directly on **Strings::Wrap**:
+
+```ruby
+Strings::Wrap.wrap(text, wrap_at)
 ```
 
 ## Development
