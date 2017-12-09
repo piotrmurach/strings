@@ -151,7 +151,7 @@ module Strings
     end
     module_function :insert_ansi
 
-    # Visible width of string
+    # Visible width of a string
     #
     # @api private
     def display_width(string)
