@@ -43,6 +43,8 @@ Or install it yourself as:
 ## Contents
 
 * [1. Usage](#1-usage)
+* [2. API](#2-api)
+ * [2.1 truncate](#21-truncate)
 
 ## 1. Usage
 
@@ -54,6 +56,59 @@ Strings.wrap text, 30
 #  "commandment; and sleep when"
 #  "you can, is my twelfth."
 
+```
+
+## 2. API
+
+### 2.1 truncate
+
+Using **Strings::Truncate** module you can truncate a given text after a given length. 
+
+Given the following text:
+
+```ruby
+text = "for there is no folly of the beast of the earth " +
+       "which is not infinitely outdone by the madness of men"
+```
+
+To shorten the text to given length call `truncate`:
+
+```ruby
+Strings.truncate(text, 20) # => "for there is no fol…"
+```
+
+or directly using the module namesapce:
+
+```ruby
+Strings::Truncate.truncate(text, 20) # => "for there is no fol…"
+```
+
+If you want to split words on their boundaries use `:separator` option:
+
+```ruby
+Strings.truncate(text, 20) # => "for there is no…"
+```
+
+Use `:trailing` option (by default `…`) to provide omission characters:
+
+```ruby
+Strings.truncate(text, 22, trailing: '... (see more)')
+# => "for there...(see more)"
+```
+
+You can also specify `UTF-8` text as well:
+
+```ruby
+text = 'ラドクリフ、マラソン五輪代表に1万m出場にも含み'
+Strings.truncate(text, 12)   # => "ラドクリフ…"
+```
+
+**Strings::Truncate** works with ANSI escape codoes:
+
+```ruby
+text = "I try \e[34mall things\e[0m, I achieve what I can"
+Strings.truncate(text, 18)
+# => "I try \e[34mall things\e[0m…"
 ```
 
 ## Development
