@@ -41,15 +41,18 @@ module Strings
     #
     # @api public
     def truncate(text, truncate_at = DEFAULT_LENGTH, options = {})
+      if truncate_at.is_a?(Hash)
+        options = truncate_at
+        truncate_at = DEFAULT_LENGTH
+      end
+
       if display_width(text) <= truncate_at.to_i || truncate_at.to_i.zero?
         return text.dup
       end
+
       trail      = options.fetch(:trailing) { DEFAULT_TRAILING }
       separation = options.fetch(:separator) { nil }
-      width      = display_width(text)
       sanitized_text = Sanitizer.sanitize(text)
-
-      return text if width <= truncate_at
 
       length_without_trailing = truncate_at - display_width(trail)
       chars = to_chars(sanitized_text).to_a

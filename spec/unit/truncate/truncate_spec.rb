@@ -31,6 +31,13 @@ RSpec.describe Strings::Truncate, '#truncate' do
     expect(Strings::Truncate.truncate(text, 100)).to eq(text)
   end
 
+  it "doesn't truncate whole words" do
+    text = "I know not all that may be coming, but be it what it will, I'll go to it laughing."
+    trailing = '…'
+    truncation = Strings::Truncate.truncate(text, separator: ' ')
+    expect(truncation).to eq("I know not all that may be#{trailing}")
+  end
+
   it 'truncates text with string separator' do
     trailing = '…'
     truncation = Strings::Truncate.truncate(text, 12, separator: '')
