@@ -1,3 +1,4 @@
+require_relative 'strings/truncate'
 require_relative 'strings/wrap'
 require_relative 'strings/version'
 
@@ -9,6 +10,16 @@ module Strings
 
   SPACE_RE   = %r{\s+}mo.freeze
   NEWLINE_RE = %r{\n}o.freeze
+
+  # Truncate a text at a given length
+  #
+  # @see Strings::Truncate#truncate
+  #
+  # @api public
+  def truncate(text, truncate_at, options = {})
+    Truncate.truncate(text, truncate_at, options)
+  end
+  module_function :truncate
 
   # Wrap a text into lines at wrap length
   #
