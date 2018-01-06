@@ -9,6 +9,10 @@ module Strings
     #
     # @param [String] text
     #
+    # @example
+    #   Strings::ANSI.sanitize("\e[33mfoo\[e0m")
+    #   # => "foo"
+    #
     # @return [String]
     #
     # @api public
@@ -22,12 +26,36 @@ module Strings
     # @param [String] string
     #   the string to check
     #
+    # @example
+    #   Strings::ANSI.ansi?("\e[33mfoo\[e0m")
+    #   # => true
+    #
     # @return [Boolean]
     #
     # @api public
     def ansi?(string)
-      !!(string =~ /^#{ANSI_MATCHER}$/)
+      !!(string =~ /#{ANSI_MATCHER}/)
     end
     module_function :ansi?
+
+    # Check if string contains only ANSI codes
+    #
+    # @param [String] string
+    #   the string to check
+    #
+    # @example
+    #   Strings::ANSI.only_ansi?("\e[33mfoo\[e0m")
+    #   # => false
+    #
+    #   Strings::ANSI.only_ansi?("\e[33m")
+    #   # => false
+    #
+    # @return [Boolean]
+    #
+    # @api public
+    def only_ansi?(string)
+      !!(string =~ /^#{ANSI_MATCHER}$/)
+    end
+    module_function :only_ansi?
   end # Sanitizer
 end # Strings
