@@ -3,6 +3,13 @@
 module Strings
   # Helper functions for handling ANSI escape sequences
   module ANSI
+    # The control sequence indicator
+    CSI = "\033".freeze
+
+    # The code for reseting styling
+    RESET = "\e[0m".freeze
+
+    # The regex to match ANSI codes
     ANSI_MATCHER = '(\[)?\033(\[)?[;?\d]*[\dA-Za-z]([\];])?'.freeze
 
     # Remove ANSI characters from the text

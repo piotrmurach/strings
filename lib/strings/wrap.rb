@@ -59,7 +59,7 @@ module Strings
 
       UnicodeUtils.each_grapheme(cleared_para) do |char|
         # we found ansi let's consume
-        if char == CSI || ansi.length > 0
+        if char == Strings::ANSI::CSI || ansi.length > 0
           ansi << char
           if Strings::ANSI.only_ansi?(ansi.join)
             ansi_matched = true
@@ -132,7 +132,7 @@ module Strings
       output = string.dup
       resetting = false
       ansi_stack.reverse_each do |state|
-        if state[0] =~ /#{Regexp.quote(RESET)}/
+        if state[0] =~ /#{Regexp.quote(Strings::ANSI::RESET)}/
           resetting = true
           reset_index = state[1]
           to_remove += 2
@@ -143,7 +143,7 @@ module Strings
         end
 
         color, color_index = *state
-        output.insert(reset_index, RESET).insert(color_index, color)
+        output.insert(reset_index, Strings::ANSI::RESET).insert(color_index, color)
       end
       ansi_stack.pop(to_remove) # remove used states
       output
