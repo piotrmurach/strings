@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module Strings
+  # Helper functions for handling ANSI escape sequences
   module ANSI
     ANSI_MATCHER = '(\[)?\033(\[)?[;?\d]*[\dA-Za-z]([\];])?'.freeze
 
