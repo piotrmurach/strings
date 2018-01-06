@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozen_string_literals: true
 
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
@@ -54,21 +54,18 @@ module Strings
       char_length = 0 # visible char length
       text_length = display_width(cleared_para)
       total_length = 0
-      ansi = ''
-      matched = nil
+      ansi = []
+      ansi_matched = false
       UnicodeUtils.each_grapheme(cleared_para) do |char|
-        if char == CSI # found ansi
-          ansi << char && next
-        end
-
-        if ansi.length > 0
+        # we found ansi let's consume
+        if char == CSI || ansi.length > 0
           ansi << char
-          if Strings::ANSI.ansi?(ansi) # we found ansi let's consume
-            matched = ansi
-          elsif matched
-            ansi_stack << [matched[0...-1], line_length + word_length]
-            matched = nil
-            ansi    = ''
+          if Strings::ANSI.ansi?(ansi.join)
+            ansi_matched = true
+          elsif ansi_matched
+            ansi_stack << [ansi[0...-1].join, line_length + word_length]
+            ansi_matched = false
+            ansi = []
           end
           next if ansi.length > 0
         end
