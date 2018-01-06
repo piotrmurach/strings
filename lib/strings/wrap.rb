@@ -47,20 +47,21 @@ module Strings
     def format_paragraph(paragraph, wrap_at, ansi_stack)
       cleared_para = Fold.fold(paragraph)
       lines = []
-      line = ''
-      word = ''
+      line  = []
+      word  = []
+      ansi  = []
+      ansi_matched = false
       word_length = 0
       line_length = 0
       char_length = 0 # visible char length
       text_length = display_width(cleared_para)
       total_length = 0
-      ansi = []
-      ansi_matched = false
+
       UnicodeUtils.each_grapheme(cleared_para) do |char|
         # we found ansi let's consume
         if char == CSI || ansi.length > 0
           ansi << char
-          if Strings::ANSI.ansi?(ansi.join)
+          if Strings::ANSI.only_ansi?(ansi.join)
             ansi_matched = true
           elsif ansi_matched
             ansi_stack << [ansi[0...-1].join, line_length + word_length]
@@ -74,9 +75,9 @@ module Strings
         total_length += char_length
         if line_length + word_length + char_length <= wrap_at
           if char == SPACE || total_length == text_length
-            line << word + char
+            line << word.join + char
             line_length += word_length + char_length
-            word = ''
+            word = []
             word_length = 0
           else
             word << char
@@ -86,26 +87,26 @@ module Strings
         end
 
         if char == SPACE # ends with space
-          lines << insert_ansi(ansi_stack, line)
-          line = ''
+          lines << insert_ansi(ansi_stack, line.join)
+          line = []
           line_length = 0
-          word += char
+          word << char
           word_length += char_length
         elsif word_length + char_length <= wrap_at
-          lines << insert_ansi(ansi_stack, line)
-          line = word + char
+          lines << insert_ansi(ansi_stack, line.join)
+          line = [word.join + char]
           line_length = word_length + char_length
-          word = ''
+          word = []
           word_length = 0
         else # hyphenate word - too long to fit a line
-          lines << insert_ansi(ansi_stack, word)
+          lines << insert_ansi(ansi_stack, word.join)
           line_length = 0
-          word = char
+          word = [char]
           word_length = char_length
         end
       end
-      lines << insert_ansi(ansi_stack, line) unless line.empty?
-      lines << insert_ansi(ansi_stack, word) unless word.empty?
+      lines << insert_ansi(ansi_stack, line.join) unless line.empty?
+      lines << insert_ansi(ansi_stack, word.join) unless word.empty?
       lines
     end
     module_function :format_paragraph
