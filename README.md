@@ -48,11 +48,12 @@ Or install it yourself as:
 
 * [1. Usage](#1-usage)
 * [2. API](#2-api)
-  * [2.1 ansi?](#21-ansi?)
-  * [2.2 fold](#22-fold)
-  * [2.3 sanitize](#23-sanitize)
-  * [2.4 truncate](#24-truncate)
-  * [2.5 wrap](#25-wrap)
+  * [2.1 align](#21-align)
+  * [2.1 ansi?](#22-ansi)
+  * [2.2 fold](#23-fold)
+  * [2.3 sanitize](#24-sanitize)
+  * [2.4 truncate](#25-truncate)
+  * [2.5 wrap](#26-wrap)
 * [3. Extending String class](#3-extending-string-class)
 
 ## 1. Usage
@@ -78,7 +79,51 @@ Strings::Wrap.at(text, 30)
 
 ## 2. API
 
-### 2.1 ansi?
+### 2.1 align
+
+To align a given multiline text within a given `width` use `align`, `align_left`, `align_center` or `align_right`.
+
+Given the following text:
+
+```ruby
+text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
+```
+
+Passing `text` as first argument, the maximum width and `:direction` to align to:
+
+```ruby
+String.align(text, 40, direction: :center)
+# =>
+#  "   for there is no folly of the beast   "
+#  "           of the earth which           "
+#  "           is not infinitely            "
+#  "     outdone by the madness of men      "
+```
+
+You can also pass `:fill` option to replace default space character:
+
+```ruby
+Strings.align(text, 40, direction: :center, fill: '*')
+# =>
+#  "***for there is no folly of the beast***"
+#  "***********of the earth which***********"
+#  "***********is not infinitely************"
+#  "*****outdone by the madness of men******"
+```
+
+It handles `UTF-8` text:
+
+```ruby
+text = "ラドクリフ\n、マラソン五輪\n代表に1万m出\n場にも含み"
+Strings.align_left(text, 20)
+# =>
+#  "ラドクリフ          "
+#  "、マラソン五輪      "
+#  "代表に1万m出        "
+#  "場にも含み          "
+```
+
+### 2.2 ansi?
 
 To check if a string includes ANSI escape codes use `ansi?` like so:
 
@@ -94,7 +139,7 @@ Strings::ANSI.ansi?("\e[33;44mfoo\e[0m")
 # => true
 ```
 
-### 2.2 fold
+### 2.3 fold
 
 To fold a multiline text into a single line preserving whitespace characters use `fold`:
 
@@ -103,7 +148,7 @@ Strings.fold("\tfoo \r\n\n bar")
 # => "foo  bar"
 ```
 
-### 2.3 sanitize
+### 2.4 sanitize
 
 To remove ANSI escape codes from a string use `sanitize`:
 
@@ -119,7 +164,7 @@ Strings::ANSI.sanitize("\e[33;44mfoo\e[0m")
 # => "foo"
 ```
 
-### 2.4 truncate
+### 2.5 truncate
 
 You can truncate a given text after a given length with `truncate` method.
 
@@ -170,7 +215,7 @@ Strings.truncate(text, 18)
 # => "I try \e[34mall things\e[0m…"
 ```
 
-### 2.5 wrap
+### 2.6 wrap
 
 To wrap text into lines no longer than `wrap_at` argument length, the `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
 
@@ -223,7 +268,7 @@ Strings::Wrap.wrap(text, wrap_at)
 
 ## 3. Extending String class
 
-Thought highly discourage to polute core Ruby classes, you can add the required methods to `String` class like so:
+Though it is highly discouraged to polute core Ruby classes, you can add the required methods to `String` class like so:
 
 ```ruby
 class String
@@ -236,7 +281,7 @@ end
 then `wrap` method will be available for all strings in your system:
 
 ```ruby
-text.wrap(30)
+string.wrap(30)
 ```
 
 ## Development
