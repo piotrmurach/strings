@@ -3,7 +3,7 @@
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
 
-require_relative 'sanitizer'
+require_relative 'ansi'
 
 module Strings
   # A module responsible for text truncation
@@ -52,7 +52,7 @@ module Strings
 
       trail      = options.fetch(:trailing) { DEFAULT_TRAILING }
       separation = options.fetch(:separator) { nil }
-      sanitized_text = Sanitizer.sanitize(text)
+      sanitized_text = Strings::ANSI.sanitize(text)
 
       length_without_trailing = truncate_at - display_width(trail)
       chars = to_chars(sanitized_text).to_a
@@ -100,7 +100,7 @@ module Strings
     #
     # @api private
     def display_width(string)
-      Unicode::DisplayWidth.of(Sanitizer.sanitize(string))
+      Unicode::DisplayWidth.of(Strings::ANSI.sanitize(string))
     end
     module_function :display_width
   end # Truncate

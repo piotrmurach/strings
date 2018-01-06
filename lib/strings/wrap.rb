@@ -3,6 +3,7 @@
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
 
+require_relative 'ansi'
 require_relative 'fold'
 
 module Strings
@@ -62,7 +63,7 @@ module Strings
 
         if ansi.length > 0
           ansi << char
-          if Sanitizer.ansi?(ansi) # we found ansi let's consume
+          if Strings::ANSI.ansi?(ansi) # we found ansi let's consume
             matched = ansi
           elsif matched
             ansi_stack << [matched[0...-1], line_length + word_length]
@@ -155,7 +156,7 @@ module Strings
     #
     # @api private
     def display_width(string)
-      Unicode::DisplayWidth.of(Sanitizer.sanitize(string))
+      Unicode::DisplayWidth.of(Strings::ANSI.sanitize(string))
     end
     module_function :display_width
   end # Wrap

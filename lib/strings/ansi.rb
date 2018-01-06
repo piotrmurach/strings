@@ -1,8 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 module Strings
-  module Sanitizer
-    ANSI_MATCHER = /(\[)?\033(\[)?[;?\d]*[\dA-Za-z](\])?/
+  module ANSI
+    ANSI_MATCHER = '(\[)?\033(\[)?[;?\d]*[\dA-Za-z]([\];])?'.freeze
 
     # Remove ANSI characters from the text
     #
@@ -12,11 +12,11 @@ module Strings
     #
     # @api public
     def sanitize(text)
-      text.gsub(ANSI_MATCHER, '')
+      text.gsub(/#{ANSI_MATCHER}/, '')
     end
     module_function :sanitize
 
-    # Check if string is an ANSI code
+    # Check if string contains ANSI codes
     #
     # @param [String] string
     #   the string to check
@@ -25,7 +25,7 @@ module Strings
     #
     # @api public
     def ansi?(string)
-      !!(string =~ /^(\[)?\033(\[)?[;?\d]*[\dA-Za-z]([\];])?$/)
+      !!(string =~ /^#{ANSI_MATCHER}$/)
     end
     module_function :ansi?
   end # Sanitizer
