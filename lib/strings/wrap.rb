@@ -3,7 +3,7 @@
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
 
-require_relative 'sanitizer'
+require_relative 'fold'
 
 module Strings
   module Wrap
@@ -44,7 +44,7 @@ module Strings
     #
     # @api private
     def format_paragraph(paragraph, wrap_at, ansi_stack)
-      cleared_para = Sanitizer.replace(paragraph)
+      cleared_para = Fold.fold(paragraph)
       lines = []
       line = ''
       word = ''
