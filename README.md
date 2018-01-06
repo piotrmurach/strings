@@ -1,3 +1,7 @@
+<div align="center">
+  <img width="225" src="https://cdn.rawgit.com/piotrmurach/strings/master/assets/strings_logo.png" alt="strings logo" />
+</div>
+
 # Strings
 
 [![Gem Version](https://badge.fury.io/rb/strings.svg)][gem]
@@ -46,10 +50,13 @@ Or install it yourself as:
 * [2. API](#2-api)
   * [2.1 truncate](#21-truncate)
   * [2.2 wrap](#22-wrap)
+* [3. Extending String class](#3-extending-string-class)
 
 ## 1. Usage
 
-To wrap a text use [wrap](#22-wrap):
+**Strings** is a module with stateless function calls which can be executed directly or mixed into other classes.
+
+For example, to wrap a text using [wrap](#22-wrap) method, you can call it directly:
 
 ```ruby
 text = "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
@@ -58,6 +65,12 @@ Strings.wrap(text, 30)
 #  "Think not, is my eleventh"
 #  "commandment; and sleep when"
 #  "you can, is my twelfth."
+```
+
+or using namespaced name:
+
+```ruby
+Strings::Wrap.at(text, 30)
 ```
 
 ## 2. API
@@ -164,6 +177,24 @@ You can also call `wrap` directly on **Strings::Wrap**:
 Strings::Wrap.wrap(text, wrap_at)
 ```
 
+## 3. Extending String class
+
+Thought highly discourage to polute core Ruby classes, you can add the required methods to `String` class like so:
+
+```ruby
+class String
+  def wrap(*args)
+    Strings.wrap(self, *args)
+  end
+end
+```
+
+then `wrap` method will be available for all strings in your system:
+
+```ruby
+text.wrap(30)
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
@@ -190,4 +221,4 @@ Everyone interacting in the Strings project’s codebases, issue trackers, chat 
 
 ## Copyright
 
-Copyright (c) 2017 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2017-2018 Piotr Murach. See LICENSE for further details.
