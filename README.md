@@ -48,8 +48,11 @@ Or install it yourself as:
 
 * [1. Usage](#1-usage)
 * [2. API](#2-api)
-  * [2.1 truncate](#21-truncate)
-  * [2.2 wrap](#22-wrap)
+  * [2.1 ansi?](#21-ansi?)
+  * [2.2 fold](#22-fold)
+  * [2.3 sanitize](#23-sanitize)
+  * [2.4 truncate](#24-truncate)
+  * [2.5 wrap](#25-wrap)
 * [3. Extending String class](#3-extending-string-class)
 
 ## 1. Usage
@@ -75,9 +78,50 @@ Strings::Wrap.at(text, 30)
 
 ## 2. API
 
-### 2.1 truncate
+### 2.1 ansi?
 
-Using **Strings::Truncate** module you can truncate a given text after a given length. 
+To check if a string includes ANSI escape codes use `ansi?` like so:
+
+```ruby
+Strings.ansi?("\e[33;44mfoo\e[0m")).to eq(true)
+# => true
+```
+
+or
+
+```ruby
+Strings::ANSI.ansi?("\e[33;44mfoo\e[0m")
+# => true
+```
+
+### 2.2 fold
+
+To fold a multiline text into a single line preserving whitespace characters use `fold`:
+
+```ruby
+Strings.fold("\tfoo \r\n\n bar")
+# => "foo  bar"
+```
+
+### 2.3 sanitize
+
+To remove ANSI escape codes from a string use `sanitize`:
+
+```ruby
+Strings.sanitize("\e[33;44mfoo\e[0m")
+# => "foo"
+```
+
+or namespaced:
+
+```ruby
+Strings::ANSI.sanitize("\e[33;44mfoo\e[0m")
+# => "foo"
+```
+
+### 2.4 truncate
+
+You can truncate a given text after a given length with `truncate` method.
 
 Given the following text:
 
@@ -126,9 +170,9 @@ Strings.truncate(text, 18)
 # => "I try \e[34mall things\e[0m…"
 ```
 
-### 2.2 wrap
+### 2.5 wrap
 
-**Strings::Wrap** allows you to wrap text into lines no longer than `wrap_at` argument length. The `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
+To wrap text into lines no longer than `wrap_at` argument length, the `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
 
 Given the following text:
 
