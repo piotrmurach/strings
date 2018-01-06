@@ -10,6 +10,8 @@ module Strings
   module Wrap
     DEFAULT_WIDTH = 80
 
+    SPACE   = ' '.freeze
+
     LINE_BREAK = "\r\n+|\r+|\n+".freeze
 
     # Wrap a text into lines no longer than wrap_at length.
