@@ -1,9 +1,13 @@
+# frozen_string_literal: true
+
+require_relative 'strings/align'
+require_relative 'strings/ansi'
+require_relative 'strings/fold'
 require_relative 'strings/truncate'
 require_relative 'strings/wrap'
 require_relative 'strings/version'
 
 module Strings
-  SPACE   = ' '.freeze
   NEWLINE = "\n".freeze
 
   SPACE_RE   = %r{\s+}mo.freeze
