@@ -4,7 +4,7 @@ module Strings
   module Fold
     LINE_BREAK = "(\r\n+|\r+|\n+|\t+)".freeze
 
-    # Remove any line break characters from the text
+    # Fold a multiline text into a single line string
     #
     # @example
     #   fold("\tfoo \r\n\n bar") # => "foo  bar"
