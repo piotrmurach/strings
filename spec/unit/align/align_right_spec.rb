@@ -12,12 +12,12 @@ RSpec.describe Strings::Align, '#align_right' do
 
   it "aligns string to the right with unicode characters" do
     text = "こんにちは"
-    expect(Strings::Align.align(text, 20, :right)).to eq("          こんにちは")
+    expect(Strings::Align.align(text, 20, direction: :right)).to eq("          こんにちは")
   end
 
   it "aligns string to the right with ansi codees" do
     text = "\e[32mthe madness of men\e[0m"
-    expect(Strings::Align.align(text, 22, :right)).to eq("    \e[32mthe madness of men\e[0m")
+    expect(Strings::Align.align(text, 22, direction: :right)).to eq("    \e[32mthe madness of men\e[0m")
   end
 
   it "aligns multiline text to the right" do

@@ -12,12 +12,12 @@ RSpec.describe Strings::Align, '#align_left' do
 
   it "left justifies string with unicode characters" do
     text = "こんにちは"
-    expect(Strings::Align.align(text, 20, :left)).to eq("こんにちは          ")
+    expect(Strings::Align.align(text, 20, direction: :left)).to eq("こんにちは          ")
   end
 
   it "left justifies string with ansi codes" do
     text = "\e[32mthe madness of men\e[0m"
-    expect(Strings::Align.align(text, 22, :left)).to eq("\e[32mthe madness of men\e[0m    ")
+    expect(Strings::Align.align(text, 22, direction: :left)).to eq("\e[32mthe madness of men\e[0m    ")
   end
 
   it "aligns multiline text to left" do

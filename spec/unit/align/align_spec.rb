@@ -4,12 +4,12 @@ RSpec.describe Strings::Align, '#align' do
   it "doesn't align unrecognized direction" do
     text = "the madness of men"
     expect {
-      Strings::Align.align(text, 22, :unknown)
+      Strings::Align.align(text, 22, direction: :unknown)
     }.to raise_error(ArgumentError, /Unknown alignment/)
   end
 
   it "fills empty" do
-    expect(Strings::Align.align_center('', 22)).to eq("                      ")
+    expect(Strings::Align.align('', 22, direction: :center)).to eq("                      ")
   end
 
   it "centers line" do
@@ -59,7 +59,7 @@ RSpec.describe Strings::Align, '#align' do
 
   it "centers multiline text with fill character '*'" do
     text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
-    expect(Strings::Align.align_center(text, 40, fill: '*')).to eq([
+    expect(Strings::Align.align(text, 40, direction: :center, fill: '*')).to eq([
      "***for there is no folly of the beast***\n",
      "***********of the earth which***********\n",
      "***********is not infinitely************\n",

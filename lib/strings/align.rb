@@ -7,7 +7,9 @@ require_relative 'ansi'
 module Strings
   # Responsible for text alignment
   module Align
-    SPACE   = ' '.freeze
+    NEWLINE = "\n".freeze
+
+    SPACE = ' '.freeze
 
     # Aligns text within the width.
     #
@@ -35,19 +37,33 @@ module Strings
     #   # => "***the madness of men***"
     #
     # @api public
-    def align(text, width, direction = :left, **options)
+    def align(text, width, direction: :left, **options)
       method = to_alignment(direction)
       send(method, text, width, options)
     end
     module_function :align
+
+    # Convert direction to method name
+    #
+    # @api private
+    def to_alignment(direction)
+      case direction.to_sym
+      when :left   then :align_left
+      when :right  then :align_right
+      when :center then :align_center
+      else
+        raise ArgumentError, "Unknown alignment `#{direction}`."
+      end
+    end
+    module_function :to_alignment
 
     # Aligns text to the left at given length
     #
     # @return [String]
     #
     # @api public
-    def align_left(text, width, fill: SPACE)
-      each_line(text) do |line|
+    def align_left(text, width, fill: SPACE, separator: NEWLINE)
+      each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           line + fill * width_diff
@@ -63,8 +79,8 @@ module Strings
     # @return [String]
     #
     # @api public
-    def align_center(text, width, fill: SPACE)
-      each_line(text) do |line|
+    def align_center(text, width, fill: SPACE, separator: NEWLINE)
+      each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           right_count = (width_diff.to_f / 2).ceil
@@ -82,8 +98,8 @@ module Strings
     # @return [String]
     #
     # @api public
-    def align_right(text, width, fill: SPACE)
-      each_line(text) do |line|
+    def align_right(text, width, fill: SPACE, separator: NEWLINE)
+      each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           fill * width_diff + line
@@ -94,18 +110,6 @@ module Strings
     end
     module_function :align_right
 
-    # @api private
-    def to_alignment(direction)
-      case direction.to_sym
-      when :left   then :align_left
-      when :right  then :align_right
-      when :center then :center_justify
-      else
-        raise ArgumentError, "Unknown alignment `#{direction}`."
-      end
-    end
-    module_function :to_alignment
-
     # Enumerate text line by line
     #
     # @param [String] text
@@ -113,12 +117,12 @@ module Strings
     # @return [String]
     #
     # @api private
-    def each_line(text)
-      lines = text.split(NEWLINE)
+    def each_line(text, separator)
+      lines = text.split(separator)
       return yield(text) if text.empty?
       lines.reduce([]) do |aligned, line|
         aligned << yield(line)
-      end.join(NEWLINE)
+      end.join(separator)
     end
     module_function :each_line
 
