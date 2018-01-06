@@ -13,6 +13,56 @@ module Strings
   SPACE_RE   = %r{\s+}mo.freeze
   NEWLINE_RE = %r{\n}o.freeze
 
+  # Align text within the width.
+  #
+  # @see Strings::Align#align
+  #
+  # @api public
+  def align(*args)
+    Align.align(*args)
+  end
+  module_function :align
+
+  # Align text left within the width.
+  #
+  # @see Strings::Align#align_left
+  #
+  # @api public
+  def align_left(*args)
+    Align.align_left(*args)
+  end
+  module_function :align_left
+
+  # Align text with the width.
+  #
+  # @see Strings::Align#align
+  #
+  # @api public
+  def align_center(*args)
+    Align.align_center(*args)
+  end
+  module_function :align_center
+
+  # Align text with the width.
+  #
+  # @see Strings::Align#align
+  #
+  # @api public
+  def align_right(*args)
+    Align.align_right(*args)
+  end
+  module_function :align_right
+
+  # Check if string contains ANSI codes
+  #
+  # @see Strings::ANSI#ansi?
+  #
+  # @api public
+  def ansi?(string)
+    ANSI.ansi?(string)
+  end
+  module_function :ansi?
+
   # Remove any line break characters from the text
   #
   # @see Strings::Fold#fold
