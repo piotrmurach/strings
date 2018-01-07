@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.1.0] - 2017-x-x
+## [v0.1.0] - 2018-01-07
 
 * Inital implementation and release
 
