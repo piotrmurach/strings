@@ -1,4 +1,4 @@
-# fronzen_string_literal: true
+# frozen_string_literal: true
 
 RSpec.describe Strings, '#truncate' do
   it "truncates text" do
