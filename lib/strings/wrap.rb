@@ -10,7 +10,9 @@ module Strings
   module Wrap
     DEFAULT_WIDTH = 80
 
-    SPACE   = ' '.freeze
+    NEWLINE = "\n".freeze
+
+    SPACE = ' '.freeze
 
     LINE_BREAK = "\r\n+|\r+|\n+".freeze
 
