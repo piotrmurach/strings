@@ -74,6 +74,16 @@ module Strings
   end
   module_function :fold
 
+  # Apply padding to multiline text with ANSI codes
+  #
+  # @see Strings::Pad#pad
+  #
+  # @api public
+  def pad(*args)
+    Pad.pad(*args)
+  end
+  module_function :pad
+
   # Remove ANSI codes from the string
   #
   # @see Strings::ANSI#sanitize
