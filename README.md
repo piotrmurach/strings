@@ -49,11 +49,12 @@ Or install it yourself as:
 * [1. Usage](#1-usage)
 * [2. API](#2-api)
   * [2.1 align](#21-align)
-  * [2.1 ansi?](#22-ansi)
-  * [2.2 fold](#23-fold)
-  * [2.3 sanitize](#24-sanitize)
-  * [2.4 truncate](#25-truncate)
-  * [2.5 wrap](#26-wrap)
+  * [2.2 ansi?](#22-ansi)
+  * [2.3 fold](#23-fold)
+  * [2.4 pad](#24-pad)
+  * [2.5 sanitize](#25-sanitize)
+  * [2.6 truncate](#26-truncate)
+  * [2.7 wrap](#27-wrap)
 * [3. Extending String class](#3-extending-string-class)
 
 ## 1. Usage
@@ -66,8 +67,8 @@ For example, to wrap a text using [wrap](#22-wrap) method, you can call it direc
 text = "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
 Strings.wrap(text, 30)
 # =>
-#  "Think not, is my eleventh"
-#  "commandment; and sleep when"
+#  "Think not, is my eleventh\n"
+#  "commandment; and sleep when\n"
 #  "you can, is my twelfth."
 ```
 
@@ -148,7 +149,70 @@ Strings.fold("\tfoo \r\n\n bar")
 # => "foo  bar"
 ```
 
-### 2.4 sanitize
+### 2.4 pad
+
+To pad around a text with a given padding use `pad` function where the seconds argument is a padding value that needs to be one of the following values corresponding with CSS padding property:
+
+```ruby
+[1,1,1,1]  # => pad text left & right with 1 character and add 1 line above & below
+[1,2]      # => pad text left & right with 2 characters and add 1 line above & below
+1          # => shorthand for [1,1,1,1]
+```
+
+For example, to pad sentence with a padding of 1 space:
+
+```ruby
+text = "Ignorance is the parent of fear."
+Strings.pad(text, 1)
+# =>
+#  "                                  \n"
+#  " Ignorance is the parent of fear. \n"
+#  "                                  "
+```
+
+You can also pass `:fill` option to replace default space character:
+
+```ruby
+text = "Ignorance is the parent of fear."
+Strings.pad(text, [1, 2], fill: "*")
+# =>
+#  "************************************\n"
+#  "**Ignorance is the parent of fear.**\n"
+#  "************************************"
+```
+
+You can also apply padding to multiline content:
+
+```ruby
+text = <<-TEXT
+It is the easiest thing
+in the world for a man
+to look as if he had
+a great secret in him.
+TEXT
+
+Strings.pad(text, 1)
+# =>
+#  "                         \n"
+#  " It is the easiest thing \n"
+#  " in the world for a man \n"
+#  " to look as if he had \n"
+#  " a great secret in him. \n"
+#  "                         "
+```
+
+The `pad` handles `UTF-8` text as well:
+
+```ruby
+text = "ラドクリフ、マラソン"
+Strings.pad(text, 1)
+# =>
+# "                      \n"
+# " ラドクリフ、マラソン \n"
+# "                      "
+```
+
+### 2.5 sanitize
 
 To remove ANSI escape codes from a string use `sanitize`:
 
@@ -164,7 +228,7 @@ Strings::ANSI.sanitize("\e[33;44mfoo\e[0m")
 # => "foo"
 ```
 
-### 2.5 truncate
+### 2.6 truncate
 
 You can truncate a given text after a given length with `truncate` method.
 
@@ -215,7 +279,7 @@ Strings.truncate(text, 18)
 # => "I try \e[34mall things\e[0m…"
 ```
 
-### 2.6 wrap
+### 2.7 wrap
 
 To wrap text into lines no longer than `wrap_at` argument length, the `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
 
@@ -230,8 +294,8 @@ Then to wrap the text to given length do:
 ```ruby
 Strings.wrap(text, 30)
 # =>
-#  "Think not, is my eleventh"
-#  "commandment; and sleep when"
+#  "Think not, is my eleventh\n"
+#  "commandment; and sleep when\n"
 #  "you can, is my twelfth."
 ```
 
@@ -241,11 +305,11 @@ Similarly, to handle `UTF-8` text do:
 text = "ラドクリフ、マラソン五輪代表に1万m出場にも含み"
 Strings.wrap(text, 8)
 # =>
-#  "ラドクリ"
-#  "フ、マラ"
-#  "ソン五輪"
-#  "代表に1"
-#  "万m出場"
+#  "ラドクリ\n"
+#  "フ、マラ\n"
+#  "ソン五輪\n"
+#  "代表に1\n"
+#  "万m出場\n"
 #  "にも含み"
 ```
 
@@ -255,8 +319,8 @@ Strings.wrap(text, 8)
 ansi_text = "\e[32;44mIgnorance is the parent of fear.\e[0m"
 Strings.wrap(ansi_text, 14)
 # =>
-#  "\e[32;44mIgnorance is \e[0m"
-#  "\e[32;44mthe parent of \e[0m"
+#  "\e[32;44mIgnorance is \e[0m\n"
+#  "\e[32;44mthe parent of \e[0m\n"
 #  "\e[32;44mfear.\e[0m"
 ```
 
