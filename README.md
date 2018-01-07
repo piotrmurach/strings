@@ -18,7 +18,7 @@
 [coverage]: https://coveralls.io/github/piotrmurach/strings?branch=master
 [inchpages]: http://inch-ci.org/github/piotrmurach/strings
 
-> The `Strings` is a set of useful functions such as wrap, truncate, indent, and many more for transforming strings.
+> The `Strings` is a set of useful functions such as fold, truncate, wrap, and many more for transforming strings.
 
 ## Installation
 

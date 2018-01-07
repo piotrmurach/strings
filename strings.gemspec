@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = [""]
 
   spec.summary       = %q{A set of useful functions for transforming strings.}
-  spec.description   = %q{A set of useful functions such as wrap, truncate, indent and more for transoforming strings.}
+  spec.description   = %q{A set of useful functions such as fold, truncate, wrap and more for transoforming strings.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
