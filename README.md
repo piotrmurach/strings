@@ -75,7 +75,7 @@ Strings.wrap(text, 30)
 or using namespaced name:
 
 ```ruby
-Strings::Wrap.at(text, 30)
+Strings::Wrap.wrap(text, 30)
 ```
 
 ## 2. API
