@@ -59,7 +59,6 @@ module Strings
     # @api public
     def initialize(padding)
       @padding = padding
-      freeze
     end
 
     # Top padding
@@ -71,6 +70,17 @@ module Strings
       @padding[0].to_i
     end
 
+    # Set top padding
+    #
+    # @param [Integer] val
+    #
+    # @return [nil]
+    #
+    # @api public
+    def top=(value)
+      @padding[0] = value
+    end
+
     # Right padding
     #
     # @return [Integer]
@@ -78,6 +88,15 @@ module Strings
     # @api public
     def right
       @padding[1].to_i
+    end
+
+    # Set right padding
+    #
+    # @param [Integer] val
+    #
+    # @api public
+    def right=(value)
+      @padding[1] = value
     end
 
     # Bottom padding
@@ -89,6 +108,17 @@ module Strings
       @padding[2].to_i
     end
 
+    # Set bottom padding
+    #
+    # @param [Integer] value
+    #
+    # @return [nil]
+    #
+    # @api public
+    def bottom=(value)
+      @padding[2] = value
+    end
+
     # Left padding
     #
     # @return [Integer]
@@ -96,6 +126,17 @@ module Strings
     # @api public
     def left
       @padding[3].to_i
+    end
+
+    # Set left padding
+    #
+    # @param [Integer] value
+    #
+    # @return [nil]
+    #
+    # @api public
+    def left=(value)
+      @padding[3] = value
     end
 
     # Check if padding is set
