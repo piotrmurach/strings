@@ -9,11 +9,6 @@ require_relative 'strings/wrap'
 require_relative 'strings/version'
 
 module Strings
-  NEWLINE = "\n".freeze
-
-  SPACE_RE   = %r{\s+}mo.freeze
-  NEWLINE_RE = %r{\n}o.freeze
-
   # Align text within the width.
   #
   # @see Strings::Align#align
