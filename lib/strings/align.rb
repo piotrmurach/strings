@@ -38,6 +38,7 @@ module Strings
     #
     # @api public
     def align(text, width, direction: :left, **options)
+      return text if width.nil?
       method = to_alignment(direction)
       send(method, text, width, options)
     end
@@ -63,6 +64,7 @@ module Strings
     #
     # @api public
     def align_left(text, width, fill: SPACE, separator: NEWLINE)
+      return if width.nil?
       each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
@@ -80,6 +82,7 @@ module Strings
     #
     # @api public
     def align_center(text, width, fill: SPACE, separator: NEWLINE)
+      return text if width.nil?
       each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
@@ -99,6 +102,7 @@ module Strings
     #
     # @api public
     def align_right(text, width, fill: SPACE, separator: NEWLINE)
+      return text if width.nil?
       each_line(text, separator) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
