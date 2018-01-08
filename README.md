@@ -93,7 +93,7 @@ text = "for there is no folly of the beast\nof the earth which\nis not infinitel
 Passing `text` as first argument, the maximum width and `:direction` to align to:
 
 ```ruby
-String.align(text, 40, direction: :center)
+Strings.align(text, 40, direction: :center)
 # =>
 #  "   for there is no folly of the beast   "
 #  "           of the earth which           "
