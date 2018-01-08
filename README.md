@@ -84,10 +84,15 @@ Strings::Wrap.wrap(text, 30)
 
 To align a given multiline text within a given `width` use `align`, `align_left`, `align_center` or `align_right`.
 
-Given the following text:
+Given the following multiline text:
 
 ```ruby
-text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
+text = <<-TEXT
+for there is no folly of the beast
+of the earth which
+is not infinitely
+outdone by the madness of men
+TEXT
 ```
 
 Passing `text` as first argument, the maximum width and `:direction` to align to:
@@ -95,9 +100,9 @@ Passing `text` as first argument, the maximum width and `:direction` to align to
 ```ruby
 Strings.align(text, 40, direction: :center)
 # =>
-#  "   for there is no folly of the beast   "
-#  "           of the earth which           "
-#  "           is not infinitely            "
+#  "   for there is no folly of the beast   \n"
+#  "           of the earth which           \n"
+#  "           is not infinitely            \n"
 #  "     outdone by the madness of men      "
 ```
 
@@ -106,9 +111,9 @@ You can also pass `:fill` option to replace default space character:
 ```ruby
 Strings.align(text, 40, direction: :center, fill: '*')
 # =>
-#  "***for there is no folly of the beast***"
-#  "***********of the earth which***********"
-#  "***********is not infinitely************"
+#  "***for there is no folly of the beast***\n"
+#  "***********of the earth which***********\n"
+#  "***********is not infinitely************\n"
 #  "*****outdone by the madness of men******"
 ```
 
@@ -118,10 +123,10 @@ It handles `UTF-8` text:
 text = "ラドクリフ\n、マラソン五輪\n代表に1万m出\n場にも含み"
 Strings.align_left(text, 20)
 # =>
-#  "ラドクリフ          "
-#  "、マラソン五輪      "
-#  "代表に1万m出        "
-#  "場にも含み          "
+#  "ラドクリフ          \n"
+#  "、マラソン五輪      \n"
+#  "代表に1万m出        \n"
+#  "場にも含み          \n"
 ```
 
 ### 2.2 ansi?
