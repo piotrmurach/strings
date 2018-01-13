@@ -94,8 +94,8 @@ module Strings
   # @see Strings::Truncate#truncate
   #
   # @api public
-  def truncate(text, truncate_at, options = {})
-    Truncate.truncate(text, truncate_at, options)
+  def truncate(*args)
+    Truncate.truncate(*args)
   end
   module_function :truncate
 
@@ -104,8 +104,8 @@ module Strings
   # @see Strings::Wrap#wrap
   #
   # @api public
-  def wrap(text, wrap_at)
-    Wrap.wrap(text, wrap_at)
+  def wrap(*args)
+    Wrap.wrap(*args)
   end
   module_function :wrap
 end # Strings
