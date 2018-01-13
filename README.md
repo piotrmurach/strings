@@ -337,20 +337,34 @@ Strings::Wrap.wrap(text, wrap_at)
 
 ## 3. Extending String class
 
-Though it is highly discouraged to polute core Ruby classes, you can add the required methods to `String` class like so:
+Though it is highly discouraged to polute core Ruby classes, you can add the required methods to `String` class by using refinements.
+
+For example, if you wish to only extend strings with `wrap` method do:
 
 ```ruby
-class String
-  def wrap(*args)
-    Strings.wrap(self, *args)
+module MyStringExt
+  refine String do
+    def wrap(*args)
+      Strings.wrap(self, *args)
+    end
   end
 end
 ```
 
-then `wrap` method will be available for all strings in your system:
+then `wrap` method will be available for any strings where refinement is applied:
 
 ```ruby
+using MyStringExt
+
 string.wrap(30)
+```
+
+However, if you want to include all the **Strings** methods:
+
+```ruby
+require 'strings/extensions'
+
+using Strings::Extensions
 ```
 
 ## Development
