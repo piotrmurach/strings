@@ -134,7 +134,7 @@ Strings.align_left(text, 20)
 To check if a string includes ANSI escape codes use `ansi?` like so:
 
 ```ruby
-Strings.ansi?("\e[33;44mfoo\e[0m")).to eq(true)
+Strings.ansi?("\e[33;44mfoo\e[0m")
 # => true
 ```
 
