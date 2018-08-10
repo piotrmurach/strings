@@ -3,7 +3,7 @@
 RSpec.describe Strings::ANSI, '#ansi?' do
   subject(:sanitizer) { described_class }
 
-  it "deson't report empty string" do
+  it "does't report empty string" do
     expect(Strings::ANSI.ansi?('')).to eq(false)
   end
 
