@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 require 'unicode/display_width'
-
-require_relative 'ansi'
+require 'strings-ansi'
 
 module Strings
   # Responsible for text alignment

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
+require 'strings-ansi'
 require 'unicode/display_width'
 
-require_relative 'ansi'
 require_relative 'padder'
 
 module Strings

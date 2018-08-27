@@ -4,6 +4,9 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gemspec
 
+#gem 'strings-ansi', path: '../strings-ansi'
+gem 'strings-ansi', git: 'https://github.com/piotrmurach/strings-ansi'
+
 group :metrics do
   gem 'coveralls', '~> 0.8.22'
   gem 'simplecov', '~> 0.16.1'

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
+require 'strings-ansi'
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
 
-require_relative 'ansi'
 require_relative 'fold'
 
 module Strings

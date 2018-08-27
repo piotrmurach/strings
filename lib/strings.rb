@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
+require 'strings-ansi'
+
 require_relative 'strings/align'
-require_relative 'strings/ansi'
 require_relative 'strings/fold'
 require_relative 'strings/pad'
 require_relative 'strings/truncate'
@@ -84,8 +85,8 @@ module Strings
   # @see Strings::ANSI#sanitize
   #
   # @api public
-  def sanitize(text)
-    ANSI.sanitize(text)
+  def sanitize(string)
+    ANSI.sanitize(string)
   end
   module_function :sanitize
 
