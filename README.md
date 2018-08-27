@@ -56,6 +56,7 @@ Or install it yourself as:
   * [2.6 truncate](#26-truncate)
   * [2.7 wrap](#27-wrap)
 * [3. Extending String class](#3-extending-string-class)
+* [4. Utilities](#4-utilities)
 
 ## 1. Usage
 
@@ -366,6 +367,14 @@ require 'strings/extensions'
 
 using Strings::Extensions
 ```
+
+## 4. Utilities
+
+**Strings** aims to be fleaxible and allow you to choose only the utilities that you need. Currently you can choose from:
+
+|  Utility     | Description | API docs |
+| ------------ | ----------- | -------- |
+| [strings-ansi](https://github.com/piotrmurach/strings-ansi) | Handle ANSI escape codes in strings. | [docs](http://www.rubydoc.info/gems/strings-ansi) |
 
 ## Development
 
