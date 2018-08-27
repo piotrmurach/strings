@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
+  spec.add_dependency 'strings-ansi',         '~> 0.1.0'
   spec.add_dependency 'unicode_utils',        '~> 1.4.0'
   spec.add_dependency 'unicode-display_width','~> 1.4.0'
 
