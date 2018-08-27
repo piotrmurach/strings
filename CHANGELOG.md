@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.1.3] - 2018-08-27
+
+### Changed
+* Change to extract Strings::ANSI to strings-ansi gem
+
 ## [v0.1.2] - 2018-08-10
 
 ### Changed
@@ -14,6 +19,7 @@
 
 * Inital implementation and release
 
+[v0.1.3]: https://github.com/piotrmurach/strings/compare/v0.1.1...v0.1.3
 [v0.1.2]: https://github.com/piotrmurach/strings/compare/v0.1.1...v0.1.2
 [v0.1.1]: https://github.com/piotrmurach/strings/compare/v0.1.0...v0.1.1
 [v0.1.0]: https://github.com/piotrmurach/strings/compare/v0.1.0
