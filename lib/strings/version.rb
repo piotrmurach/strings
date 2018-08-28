@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Strings
-  VERSION = '0.1.2'.freeze
-end
+  VERSION = '0.1.3'
+end # Strings
