@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.1.3] - 2018-08-27
+## [v0.1.3] - 2018-08-28
 
 ### Changed
 * Change to extract Strings::ANSI to strings-ansi gem
