@@ -30,10 +30,18 @@ RSpec.describe Strings::Align, '#align' do
   it "centers multiline text" do
     text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
     expect(Strings::Align.align_center(text, 40)).to eq([
-     "   for there is no folly of the beast   \n",
-     "           of the earth which           \n",
-     "           is not infinitely            \n",
-     "     outdone by the madness of men      "
+      "   for there is no folly of the beast   \n",
+      "           of the earth which           \n",
+      "           is not infinitely            \n",
+      "     outdone by the madness of men      "
+    ].join)
+  end
+
+  it "centers multiline text with exact width" do
+    text = "the madness \nof men"
+    expect(Strings::Align.align_center(text, 12)).to eq([
+      "the madness \n",
+      "   of men   "
     ].join)
   end
 
@@ -50,20 +58,20 @@ RSpec.describe Strings::Align, '#align' do
   it "centers text with ansi codes" do
     text = "for \e[35mthere\e[0m is no folly of the beast\nof the \e[33mearth\e0m which\nis \e[34mnot infinitely\e[0m\n\e[33moutdone\e[0m by the madness of men"
     expect(Strings::Align.align_center(text, 40)).to eq([
-     "   for \e[35mthere\e[0m is no folly of the beast   \n",
-     "           of the \e[33mearth\e0m which           \n",
-     "           is \e[34mnot infinitely\e[0m            \n",
-     "     \e[33moutdone\e[0m by the madness of men      "
+      "   for \e[35mthere\e[0m is no folly of the beast   \n",
+      "           of the \e[33mearth\e0m which           \n",
+      "           is \e[34mnot infinitely\e[0m            \n",
+      "     \e[33moutdone\e[0m by the madness of men      "
     ].join)
   end
 
   it "centers multiline text with fill character '*'" do
     text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
     expect(Strings::Align.align(text, 40, direction: :center, fill: '*')).to eq([
-     "***for there is no folly of the beast***\n",
-     "***********of the earth which***********\n",
-     "***********is not infinitely************\n",
-     "*****outdone by the madness of men******"
+      "***for there is no folly of the beast***\n",
+      "***********of the earth which***********\n",
+      "***********is not infinitely************\n",
+      "*****outdone by the madness of men******"
     ].join)
   end
 end
