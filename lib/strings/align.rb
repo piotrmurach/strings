@@ -89,7 +89,7 @@ module Strings
           left_count  =  width_diff - right_count
           [fill * left_count, line, fill * right_count].join
         else
-          text
+          line
         end
       end
     end
