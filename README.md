@@ -41,7 +41,7 @@ Or install it yourself as:
 * No monkey-patching String class
 * Functional API that can be easily wrapped by other objects
 * Supports multibyte character encodings such as UTF-8, EUC-JP
-* Handles languages without whitespaces between words (like Chinese and Japanese)
+* Handles languages without white-spaces between words (like Chinese and Japanese)
 * Supports ANSI escape codes
 
 ## Contents
@@ -132,14 +132,14 @@ Strings.align_left(text, 20)
 
 ### 2.2 ansi?
 
-To check if a string includes ANSI escape codes use `ansi?` like so:
+To check if a string includes ANSI escape codes use `ansi?` method like so:
 
 ```ruby
 Strings.ansi?("\e[33;44mfoo\e[0m")
 # => true
 ```
 
-or
+Or fully qualified name:
 
 ```ruby
 Strings::ANSI.ansi?("\e[33;44mfoo\e[0m")
@@ -148,7 +148,7 @@ Strings::ANSI.ansi?("\e[33;44mfoo\e[0m")
 
 ### 2.3 fold
 
-To fold a multiline text into a single line preserving whitespace characters use `fold`:
+To fold a multiline text into a single line preserving white-space characters use `fold`:
 
 ```ruby
 Strings.fold("\tfoo \r\n\n bar")
@@ -277,7 +277,7 @@ text = 'ラドクリフ、マラソン五輪代表に1万m出場にも含み'
 Strings.truncate(text, 12)   # => "ラドクリフ…"
 ```
 
-**Strings::Truncate** works with ANSI escape codoes:
+**Strings::Truncate** works with ANSI escape codes:
 
 ```ruby
 text = "I try \e[34mall things\e[0m, I achieve what I can"
@@ -287,7 +287,7 @@ Strings.truncate(text, 18)
 
 ### 2.7 wrap
 
-To wrap text into lines no longer than `wrap_at` argument length, the `wrap` method will break either on whitespace character or in case of east Asian characters on character boundaries.
+To wrap text into lines no longer than `wrap_at` argument length, the `wrap` method will break either on white-space character or in case of east Asian characters on character boundaries.
 
 Given the following text:
 
@@ -338,7 +338,7 @@ Strings::Wrap.wrap(text, wrap_at)
 
 ## 3. Extending String class
 
-Though it is highly discouraged to polute core Ruby classes, you can add the required methods to `String` class by using refinements.
+Though it is highly discouraged to pollute core Ruby classes, you can add the required methods to `String` class by using refinements.
 
 For example, if you wish to only extend strings with `wrap` method do:
 
@@ -352,7 +352,7 @@ module MyStringExt
 end
 ```
 
-then `wrap` method will be available for any strings where refinement is applied:
+Then `wrap` method will be available for any strings where refinement is applied:
 
 ```ruby
 using MyStringExt
@@ -370,7 +370,7 @@ using Strings::Extensions
 
 ## 4. Utilities
 
-**Strings** aims to be fleaxible and allow you to choose only the utilities that you need. Currently you can choose from:
+**Strings** aims to be flexible and allow you to choose only the utilities that you need. Currently you can choose from:
 
 |  Utility     | Description | API docs |
 | ------------ | ----------- | -------- |
@@ -402,4 +402,4 @@ Everyone interacting in the Strings project’s codebases, issue trackers, chat 
 
 ## Copyright
 
-Copyright (c) 2017-2018 Piotr Murach. See LICENSE for further details.
+Copyright (c) 2017 Piotr Murach. See LICENSE for further details.
