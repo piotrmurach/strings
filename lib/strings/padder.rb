@@ -72,7 +72,7 @@ module Strings
 
     # Set top padding
     #
-    # @param [Integer] val
+    # @param [Integer] value
     #
     # @return [nil]
     #
@@ -92,7 +92,7 @@ module Strings
 
     # Set right padding
     #
-    # @param [Integer] val
+    # @param [Integer] value
     #
     # @api public
     def right=(value)
