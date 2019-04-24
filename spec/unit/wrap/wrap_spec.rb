@@ -16,6 +16,18 @@ RSpec.describe Strings::Wrap, '.wrap' do
       expect(Strings::Wrap.wrap(text, 100)).to eq(text)
     end
 
+    it "wraps minimal width" do
+      str = "#?%"
+
+      val = Strings::Wrap.wrap(str, 1)
+
+      expect(val).to eq([
+        "#",
+        "?",
+        "%"
+      ].join("\n"))
+    end
+
     it "wraps correctly unbreakable words" do
       expect(Strings::Wrap.wrap('foobar1', 3)).to eq([
         "foo",
@@ -150,6 +162,14 @@ RSpec.describe Strings::Wrap, '.wrap' do
         "man; I'd \e[35mstrike the sun\e[0m if it ",
         "insulted me."
       ].join("\n"))
+    end
+
+    it "ignores ANSI codes in width calculation" do
+      str = "\e[32mone\e[0m\e[33mtwo\e[0m"
+
+      val = Strings::Wrap.wrap(str, 6)
+
+      expect(val).to eq("\e[32mone\e[0m\e[33mtwo\e[0m")
     end
   end
 end

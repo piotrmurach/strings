@@ -70,7 +70,12 @@ module Strings
           elsif ansi_matched
             ansi_stack << [ansi[0...-1].join, line_length + word_length]
             ansi_matched = false
-            ansi = []
+
+            if ansi.last == Strings::ANSI::CSI
+              ansi = [ansi.last]
+            else
+              ansi = []
+            end
           end
           next if ansi.length > 0
         end
