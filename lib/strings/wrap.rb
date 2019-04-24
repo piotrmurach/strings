@@ -131,25 +131,29 @@ module Strings
     # @api private
     def insert_ansi(ansi_stack, string)
       return string if ansi_stack.empty?
-      to_remove = 0
-      reset_index = -1
-      output = string.dup
-      resetting = false
-      ansi_stack.reverse_each do |state|
-        if state[0] =~ /#{Regexp.quote(Strings::ANSI::RESET)}/
-          resetting = true
-          reset_index = state[1]
-          to_remove += 2
+
+      pairs_to_remove = 0
+      output          = string.dup
+      matched_reset   = false
+      ansi_reset      = Strings::ANSI::RESET
+
+      # Reversed so that string index don't count ansi
+      ansi_stack.reverse_each do |ansi|
+        if ansi[0] =~ /#{Regexp.quote(ansi_reset)}/
+          matched_reset = true
+          output.insert(ansi[1], ansi_reset)
+          pairs_to_remove += 2 # remove only pairs from the stack
           next
-        elsif !resetting
-          reset_index = -1
-          resetting = false
+        elsif !matched_reset # ansi without reset
+          output.insert(-1, ansi_reset) # add reset at the end
+          matched_reset = false
         end
 
-        color, color_index = *state
-        output.insert(reset_index, Strings::ANSI::RESET).insert(color_index, color)
+        output.insert(ansi[1], ansi[0])
       end
-      ansi_stack.pop(to_remove) # remove used states
+
+      ansi_stack.pop(pairs_to_remove) # remove used ansi codes
+
       output
     end
     module_function :insert_ansi
