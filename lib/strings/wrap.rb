@@ -91,26 +91,26 @@ module Strings
         end
 
         if char == SPACE # ends with space
-          lines << insert_ansi(ansi_stack, line.join)
+          lines << insert_ansi(line.join, ansi_stack)
           line = []
           line_length = 0
           word << char
           word_length += char_length
         elsif word_length + char_length <= wrap_at
-          lines << insert_ansi(ansi_stack, line.join)
+          lines << insert_ansi(line.join, ansi_stack)
           line = [word.join + char]
           line_length = word_length + char_length
           word = []
           word_length = 0
         else # hyphenate word - too long to fit a line
-          lines << insert_ansi(ansi_stack, word.join)
+          lines << insert_ansi(word.join, ansi_stack)
           line_length = 0
           word = [char]
           word_length = char_length
         end
       end
-      lines << insert_ansi(ansi_stack, line.join) unless line.empty?
-      lines << insert_ansi(ansi_stack, word.join) unless word.empty?
+      lines << insert_ansi(line.join, ansi_stack) unless line.empty?
+      lines << insert_ansi(word.join, ansi_stack) unless word.empty?
       lines
     end
     module_function :format_paragraph
@@ -120,16 +120,16 @@ module Strings
     # Check if there are any ANSI states, if present
     # insert ANSI codes at given positions unwinding the stack.
     #
-    # @param [Array[Array[String, Integer]]] ansi_stack
-    #   the ANSI codes to apply
-    #
     # @param [String] string
     #   the string to insert ANSI codes into
+    #
+    # @param [Array[Array[String, Integer]]] ansi_stack
+    #   the ANSI codes to apply
     #
     # @return [String]
     #
     # @api private
-    def insert_ansi(ansi_stack, string)
+    def insert_ansi(string, ansi_stack = [])
       return string if ansi_stack.empty?
 
       pairs_to_remove = 0
