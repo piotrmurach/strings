@@ -132,7 +132,7 @@ module Strings
     def insert_ansi(string, ansi_stack = [])
       return string if ansi_stack.empty?
 
-      pairs_to_remove = 0
+      new_stack = []
       output          = string.dup
       matched_reset   = false
       ansi_reset      = Strings::ANSI::RESET
@@ -142,17 +142,17 @@ module Strings
         if ansi[0] =~ /#{Regexp.quote(ansi_reset)}/
           matched_reset = true
           output.insert(ansi[1], ansi_reset)
-          pairs_to_remove += 2 # remove only pairs from the stack
           next
         elsif !matched_reset # ansi without reset
           output.insert(-1, ansi_reset) # add reset at the end
           matched_reset = false
+          new_stack << ansi # keep the ansi
         end
 
         output.insert(ansi[1], ansi[0])
       end
 
-      ansi_stack.pop(pairs_to_remove) # remove used ansi codes
+      ansi_stack.replace(new_stack)
 
       output
     end
