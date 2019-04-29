@@ -53,13 +53,13 @@ RSpec.describe "#insert_ansi" do
     expect(stack).to eq([])
   end
 
-  it "removes matching paris of ANSI codes only" do
-     text = "one"
-     stack =  [["\e[32m", 0], ["\e[0m", 3], ["\e[33m", 3]]
+  it "removes matching pairs of ANSI codes only" do
+    text = "one"
+    stack =  [["\e[32m", 0], ["\e[0m", 3], ["\e[33m", 3]]
 
-     val = Strings::Wrap.insert_ansi(text, stack)
+    val = Strings::Wrap.insert_ansi(text, stack)
 
-     expect(val).to eq("\e[32mone\e[0m\e[33m\e[0m")
-     expect(stack).to eq([["\e[33m", 3]])
+    expect(val).to eq("\e[32mone\e[0m")
+    expect(stack).to eq([["\e[33m", 3]])
   end
 end

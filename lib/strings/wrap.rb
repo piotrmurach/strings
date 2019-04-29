@@ -136,9 +136,11 @@ module Strings
     # @api private
     def insert_ansi(string, ansi_stack = [])
       return string if ansi_stack.empty?
+      return string if string.empty?
 
       new_stack = []
       output          = string.dup
+      length          = string.size
       matched_reset   = false
       ansi_reset      = Strings::ANSI::RESET
 
@@ -149,9 +151,10 @@ module Strings
           output.insert(ansi[1], ansi_reset)
           next
         elsif !matched_reset # ansi without reset
-          output.insert(-1, ansi_reset) # add reset at the end
           matched_reset = false
           new_stack << ansi # keep the ansi
+          next if ansi[1] == length
+          output.insert(-1, ansi_reset) # add reset at the end
         end
 
         output.insert(ansi[1], ansi[0])
