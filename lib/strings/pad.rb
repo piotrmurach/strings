@@ -9,8 +9,8 @@ module Strings
   # Responsible for text padding
   module Pad
     NEWLINE = "\n".freeze
-
-    SPACE = ' '.freeze
+    SPACE = " ".freeze
+    LINE_BREAK =  %r{\r\n|\r|\n}.freeze
 
     # Apply padding to multiline text with ANSI codes
     #
@@ -31,10 +31,11 @@ module Strings
     # @return [String]
     #
     # @api private
-    def pad(text, padding, fill: SPACE, separator: NEWLINE)
+    def pad(text, padding, fill: SPACE, separator: nil)
       padding   = Strings::Padder.parse(padding)
       text_copy = text.dup
-      line_width = max_line_length(text, separator)
+      sep = separator || text[LINE_BREAK] || NEWLINE
+      line_width = max_line_length(text, sep)
       output = []
 
       filler_line = fill * line_width
@@ -43,7 +44,8 @@ module Strings
         output << pad_around(filler_line, padding, fill: fill)
       end
 
-      text_copy.split(separator).each do |line|
+      text_copy.split(sep).each do |line|
+        line = line.empty? ? filler_line : line
         output << pad_around(line, padding, fill: fill)
       end
 
@@ -51,7 +53,7 @@ module Strings
         output << pad_around(filler_line, padding, fill: fill)
       end
 
-      output.join(separator)
+      output.join(sep)
     end
     module_function :pad
 

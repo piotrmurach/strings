@@ -60,4 +60,15 @@ RSpec.describe Strings::Pad, '#pad' do
       "                         ",
     ].join("\n"))
   end
+
+  it "handles \r\n line separator" do
+    text = "Closes #360\r\n\r\nCloses !217"
+    expect(Strings::Pad.pad(text, [1,1,1,1])).to eq([
+      "             ",
+      " Closes #360 ",
+      "             ",
+      " Closes !217 ",
+      "             "
+    ].join("\r\n"))
+  end
 end
