@@ -7,8 +7,8 @@ module Strings
   # Responsible for text alignment
   module Align
     NEWLINE = "\n".freeze
-
-    SPACE = ' '.freeze
+    SPACE = " ".freeze
+    LINE_BREAK = %r{\r\n|\r|\n}.freeze
 
     # Aligns text within the width.
     #
@@ -62,9 +62,11 @@ module Strings
     # @return [String]
     #
     # @api public
-    def align_left(text, width, fill: SPACE, separator: NEWLINE)
+    def align_left(text, width, fill: SPACE, separator: nil)
       return if width.nil?
-      each_line(text, separator) do |line|
+      sep = separator || text[LINE_BREAK] || NEWLINE
+
+      each_line(text, sep) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           line + fill * width_diff
@@ -80,9 +82,11 @@ module Strings
     # @return [String]
     #
     # @api public
-    def align_center(text, width, fill: SPACE, separator: NEWLINE)
+    def align_center(text, width, fill: SPACE, separator: nil)
       return text if width.nil?
-      each_line(text, separator) do |line|
+      sep = separator || text[LINE_BREAK] || NEWLINE
+
+      each_line(text, sep) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           right_count = (width_diff.to_f / 2).ceil
@@ -100,9 +104,11 @@ module Strings
     # @return [String]
     #
     # @api public
-    def align_right(text, width, fill: SPACE, separator: NEWLINE)
+    def align_right(text, width, fill: SPACE, separator: nil)
       return text if width.nil?
-      each_line(text, separator) do |line|
+      sep = separator || text[LINE_BREAK] || NEWLINE
+
+      each_line(text, sep) do |line|
         width_diff = width - display_width(line)
         if width_diff > 0
           fill * width_diff + line

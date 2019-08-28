@@ -74,4 +74,22 @@ RSpec.describe Strings::Align, '#align' do
       "*****outdone by the madness of men******"
     ].join)
   end
+
+  it "handles \r\n line separator" do
+    text = "Closes #360\r\n\r\nCloses !217"
+    expect(Strings::Align.align(text, 27)).to eq([
+      "Closes #360                ",
+      "                           ",
+      "Closes !217                "
+    ].join("\r\n"))
+  end
+
+  it "handles \r\n line separator and centers" do
+    text = "Closes #360\r\n\r\nCloses !217"
+    expect(Strings::Align.align_center(text, 27)).to eq([
+      "        Closes #360        ",
+      "                           ",
+      "        Closes !217        "
+    ].join("\r\n"))
+  end
 end
