@@ -9,12 +9,10 @@ require_relative 'fold'
 module Strings
   module Wrap
     DEFAULT_WIDTH = 80
-
     NEWLINE = "\n".freeze
-
-    SPACE = ' '.freeze
-
-    LINE_BREAK = "\r\n+|\r+|\n+".freeze
+    SPACE = " ".freeze
+    LINE_BREAK = %r{\r\n|\r|\n}.freeze
+    LINE_BREAKS = "\r\n+|\r+|\n+".freeze
 
     # Wrap a text into lines no longer than wrap_at length.
     # Preserves existing lines and existing word boundaries.
@@ -26,14 +24,15 @@ module Strings
     #        >text
     #
     # @api public
-    def wrap(text, wrap_at = DEFAULT_WIDTH)
-      if text.length < wrap_at.to_i || wrap_at.to_i.zero?
+    def wrap(text, wrap_at = DEFAULT_WIDTH, separator: nil)
+      if text.scan(/[[:print:]]/).length < wrap_at.to_i || wrap_at.to_i.zero?
         return text
       end
       ansi_stack = []
-      text.split(%r{#{LINE_BREAK}}, -1).map do |paragraph|
+      sep = separator || text[LINE_BREAK] || NEWLINE
+      text.split(%r{#{LINE_BREAKS}}, -1).map do |paragraph|
         format_paragraph(paragraph, wrap_at, ansi_stack)
-      end * NEWLINE
+      end * sep
     end
     module_function :wrap
 

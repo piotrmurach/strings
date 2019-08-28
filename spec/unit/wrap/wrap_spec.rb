@@ -1,4 +1,4 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
 RSpec.describe Strings::Wrap, '.wrap' do
   context 'when unicode' do
@@ -46,7 +46,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
         "  ",
         "conte",
         "nt "
-      ].join("\n"))
+      ].join("\r\n"))
     end
 
     it "preserves newlines" do
@@ -124,6 +124,11 @@ RSpec.describe Strings::Wrap, '.wrap' do
         "1万m出場に",
         "も含み\n"
       ].join("\n"))
+    end
+
+    it "handles \r\n line separator" do
+      text = "Closes #360\r\n\r\nCloses !217"
+      expect(Strings::Wrap.wrap(text, 15)).to eq(text)
     end
   end
 
