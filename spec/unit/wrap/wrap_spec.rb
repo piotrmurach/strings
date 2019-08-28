@@ -164,12 +164,39 @@ RSpec.describe Strings::Wrap, '.wrap' do
       ].join("\n"))
     end
 
-    it "ignores ANSI codes in width calculation" do
+    it "applies ANSI codes when below wrap width" do
       str = "\e[32mone\e[0m\e[33mtwo\e[0m"
 
       val = Strings::Wrap.wrap(str, 6)
 
       expect(val).to eq("\e[32mone\e[0m\e[33mtwo\e[0m")
+    end
+
+    xit "splits ANSI codes matching wrap width with space between codes" do
+      str = "\e[32mone\e[0m \e[33mtwo\e[0m"
+
+      val = Strings::Wrap.wrap(str, 3)
+
+      expect(val).to eq("\e[32mone\e[0m\n\e[33mtwo\e[0m")
+    end
+
+    xit "splits ANSI codes matching wrap width" do
+      str = "\e[32mone\e[0m\e[33mtwo\e[0m"
+
+      val = Strings::Wrap.wrap(str, 3)
+
+      expect(val).to eq("\e[32mone\e[0m\n\e[33mtwo\e[0m")
+    end
+
+    xit "wraps deeply nested ANSI codes correctly" do
+      str = "\e[32mone\e[33mtwo\e[0m\e[0m"
+
+      val = Strings::Wrap.wrap(str, 3)
+
+      expect(val).to eq([
+        "\e[32mone\e[0m",
+        "\e[33mtwo\e[0m",
+      ].join("\n"))
     end
   end
 end
