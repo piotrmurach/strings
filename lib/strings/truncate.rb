@@ -70,6 +70,7 @@ module Strings
     # @api private
     def shorten(original_chars, chars, length_without_trailing)
       truncated = []
+      return truncated if length_without_trailing.zero?
       char_width = display_width(chars[0])
       while length_without_trailing - char_width > 0
         orig_char = original_chars.shift

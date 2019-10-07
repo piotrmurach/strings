@@ -11,6 +11,10 @@ RSpec.describe Strings::Truncate, '#truncate' do
     expect(Strings::Truncate.truncate(text, nil)).to eq(text)
   end
 
+  it "truncate length of 1 results in just the trailing character" do
+    expect(Strings::Truncate.truncate(text, 1)).to eq(Strings::Truncate::DEFAULT_TRAILING)
+  end
+
   it "doesn't change text for equal length" do
     truncation = Strings::Truncate.truncate(text, text.length * 2)
     expect(truncation).to eq(text)
