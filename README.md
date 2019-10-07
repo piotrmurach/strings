@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="225" src="https://cdn.rawgit.com/piotrmurach/strings/master/assets/strings_logo.png" alt="strings logo" />
+  <img width="225" src="https://github.com/piotrmurach/tenpin/blob/master/assets/strings_logo.png" alt="strings logo" />
 </div>
 
 # Strings
