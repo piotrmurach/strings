@@ -1,5 +1,8 @@
 # Change log
 
+## [v0.1.7] - 2019-10-xx
+* Fix Truncate#truncate to accept length of 1 by Katelyn Schiesser(@slowbro)
+
 ## [v0.1.6] - 2019-08-28
 
 ### Changed
@@ -40,7 +43,8 @@
 
 * Initial implementation and release
 
-[v0.1.6]: https://github.com/piotrmurach/strings/compare/v0.1.4...v0.1.5
+[v0.1.7]: https://github.com/piotrmurach/strings/compare/v0.1.6...v0.1.7
+[v0.1.6]: https://github.com/piotrmurach/strings/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/piotrmurach/strings/compare/v0.1.4...v0.1.5
 [v0.1.4]: https://github.com/piotrmurach/strings/compare/v0.1.3...v0.1.4
 [v0.1.3]: https://github.com/piotrmurach/strings/compare/v0.1.2...v0.1.3
