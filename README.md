@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="225" src="https://github.com/piotrmurach/tenpin/blob/master/assets/strings_logo.png" alt="strings logo" />
+  <img width="225" src="https://github.com/piotrmurach/strings/blob/master/assets/strings_logo.png" alt="strings logo" />
 </div>
 
 # Strings
@@ -43,6 +43,7 @@ Or install it yourself as:
 * Supports multibyte character encodings such as UTF-8, EUC-JP
 * Handles languages without white-spaces between words (like Chinese and Japanese)
 * Supports ANSI escape codes
+* Flexible by nature, split into [components](4-components)
 
 ## Contents
 
@@ -56,7 +57,7 @@ Or install it yourself as:
   * [2.6 truncate](#26-truncate)
   * [2.7 wrap](#27-wrap)
 * [3. Extending String class](#3-extending-string-class)
-* [4. Utilities](#4-utilities)
+* [4. Components](#4-components)
 
 ## 1. Usage
 
@@ -368,13 +369,14 @@ require 'strings/extensions'
 using Strings::Extensions
 ```
 
-## 4. Utilities
+## 4. Components
 
 **Strings** aims to be flexible and allow you to choose only the utilities that you need. Currently you can choose from:
 
-|  Utility     | Description | API docs |
+|  Component   | Description | API docs |
 | ------------ | ----------- | -------- |
 | [strings-ansi](https://github.com/piotrmurach/strings-ansi) | Handle ANSI escape codes in strings. | [docs](http://www.rubydoc.info/gems/strings-ansi) |
+| [strings-case](https://github.com/piotrmurach/strings-case) | Handle case transformations in strings. | [docs](http://www.rubydoc.info/gems/strings-case) |
 
 ## Development
 
