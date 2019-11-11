@@ -43,7 +43,7 @@ Or install it yourself as:
 * Supports multibyte character encodings such as UTF-8, EUC-JP
 * Handles languages without white-spaces between words (like Chinese and Japanese)
 * Supports ANSI escape codes
-* Flexible by nature, split into [components](4-components)
+* Flexible by nature, split into [components](#4-components)
 
 ## Contents
 
@@ -371,7 +371,7 @@ using Strings::Extensions
 
 ## 4. Components
 
-**Strings** aims to be flexible and allow you to choose only the utilities that you need. Currently you can choose from:
+**Strings** aims to be flexible and allow you to choose only the components that you need. Currently you can choose from:
 
 |  Component   | Description | API docs |
 | ------------ | ----------- | -------- |
