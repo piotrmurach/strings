@@ -1,6 +1,8 @@
 # Change log
 
-## [v0.1.7] - 2019-10-xx
+## [v0.1.7] - 2019-11-14
+
+### Fixed
 * Fix Truncate#truncate to accept length of 1 by Katelyn Schiesser(@slowbro)
 
 ## [v0.1.6] - 2019-08-28
