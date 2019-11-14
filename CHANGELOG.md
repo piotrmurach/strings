@@ -2,6 +2,9 @@
 
 ## [v0.1.7] - 2019-11-14
 
+### Added
+* Add metadata to gemspec
+
 ### Fixed
 * Fix Truncate#truncate to accept length of 1 by Katelyn Schiesser(@slowbro)
 
