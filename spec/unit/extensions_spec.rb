@@ -39,9 +39,35 @@ RSpec.describe Strings::Extensions do
     ].join("\n"))
   end
 
+  it "pads a line" do
+    expect(text.pad(1)).to eq([
+      " " * (text.size + 2),
+      " #{text} ",
+      " " * (text.size + 2),
+    ].join("\n"))
+  end
+
+  it "pads a line with custom fill" do
+    expect(text.pad(1, fill: "*")).to eq([
+      "*" * (text.size + 2),
+      "*#{text}*",
+      "*" * (text.size + 2),
+    ].join("\n"))
+  end
+
   it "truncates a line" do
     text = "the madness of men"
-    expect(text.truncate(10)).to eq('the madn…')
+    expect(text.truncate(10)).to eq("the madn…")
+  end
+
+  it "truncates a line with a custom trailing" do
+    text = "the madness of men"
+    expect(text.truncate(10, trailing: "...")).to eq("the ma...")
+  end
+
+  it "truncates into words with a custom trailing" do
+    text = "the madness of men"
+    expect(text.truncate(16, trailing: "...", separator: " ")).to eq("the madness...")
   end
 
   it "wraps a line" do
