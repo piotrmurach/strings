@@ -5,8 +5,8 @@ require_relative '../strings'
 module Strings
   module Extensions
     refine String do
-      def align(*args)
-        Align.align(self, *args)
+      def align(*args, **kws)
+        Align.align(self, *args, **kws)
       end
 
       def align_left(*args)

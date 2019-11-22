@@ -39,7 +39,7 @@ module Strings
     def align(text, width, direction: :left, **options)
       return text if width.nil?
       method = to_alignment(direction)
-      send(method, text, width, options)
+      send(method, text, width, **options)
     end
     module_function :align
 
