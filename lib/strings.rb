@@ -15,8 +15,8 @@ module Strings
   # @see Strings::Align#align
   #
   # @api public
-  def align(*args)
-    Align.align(*args)
+  def align(*args, **kws)
+    Align.align(*args, **kws)
   end
   module_function :align
 
