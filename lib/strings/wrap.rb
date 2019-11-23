@@ -19,9 +19,7 @@ module Strings
     #
     # @example
     #   Strings::Wrap.wrap("Some longish text", 8)
-    #   # => >Some
-    #        >longish
-    #        >text
+    #   # => "Some \nlongish \ntext"
     #
     # @api public
     def wrap(text, wrap_at = DEFAULT_WIDTH, separator: nil)

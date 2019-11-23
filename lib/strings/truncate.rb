@@ -27,15 +27,15 @@ module Strings
     #   text = "The sovereignest thing on earth is parmacetti for an inward bruise."
     #
     #   Strings::Truncate.truncate(text)
-    #   # => "The sovereignest thing on ear…"
+    #   # => "The sovereignest thing on ea…"
     #
     #   Strings::Truncate.truncate(text, 20)
-    #   # => "The sovereignest th…"
+    #   # => "The sovereignest t…"
     #
     #   Strings::Truncate.truncate(text, 20, separator: ' ' )
     #   # => "The sovereignest…"
     #
-    #   Strings::Truncate.truncate(40, trailing: '... (see more)' )
+    #   Strings::Truncate.truncate(text, 40, trailing: '... (see more)' )
     #   # => "The sovereignest thing on... (see more)"
     #
     # @api public
