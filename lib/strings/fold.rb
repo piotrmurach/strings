@@ -7,7 +7,7 @@ module Strings
     # Fold a multiline text into a single line string
     #
     # @example
-    #   fold("\tfoo \r\n\n bar") # => "foo  bar"
+    #   fold("\tfoo \r\n\n bar") # => " foo  bar"
     #
     # @param [String] text
     #

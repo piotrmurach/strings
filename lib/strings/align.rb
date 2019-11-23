@@ -23,16 +23,16 @@ module Strings
     # @example
     #   text = "the madness of men"
     #
-    #   Strings::Align.align(22, :left)
+    #   Strings::Align.align(text, 22, direction: :left)
     #   # => "the madness of men      "
     #
-    #   Strings::Align.align(22, :center)
+    #   Strings::Align.align(text, 22, direction: :center)
     #   # => "   the madness of men   "
     #
-    #   Strings::Align(22, :right)
+    #   Strings::Align(text, 22, direction: :right)
     #   # => "      the madness of men"
     #
-    #   Strings::Align.align(22, :center, fill: '*)
+    #   Strings::Align.align(text, 22, direction: :center, fill: '*')
     #   # => "***the madness of men***"
     #
     # @api public
