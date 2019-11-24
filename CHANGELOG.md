@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.1.8] - 2019-11-24
+
+### Fixed
+* Fix Ruby 2.7 warnings by Ryan Davis(@zenspider)
+
 ## [v0.1.7] - 2019-11-14
 
 ### Added
@@ -48,6 +53,7 @@
 
 * Initial implementation and release
 
+[v0.1.8]: https://github.com/piotrmurach/strings/compare/v0.1.7...v0.1.8
 [v0.1.7]: https://github.com/piotrmurach/strings/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/piotrmurach/strings/compare/v0.1.5...v0.1.6
 [v0.1.5]: https://github.com/piotrmurach/strings/compare/v0.1.4...v0.1.5
