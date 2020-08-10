@@ -18,11 +18,12 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/piotrmurach/strings"
 
-  spec.files         = Dir["lib/**/*"]
+  spec.files = Dir["lib/**/*"]
   spec.extra_rdoc_files = Dir["README.md", "CHANGELOG.md", "LICENSE.txt"]
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.0.0")
 
-  spec.add_dependency "strings-ansi",          "~> 0.1"
+  spec.add_dependency "strings-ansi",          "~> 0.2"
   spec.add_dependency "unicode_utils",         "~> 1.4"
   spec.add_dependency "unicode-display_width", "~> 1.5"
 
