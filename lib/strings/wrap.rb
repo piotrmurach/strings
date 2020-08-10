@@ -4,8 +4,6 @@ require 'strings-ansi'
 require 'unicode/display_width'
 require 'unicode_utils/each_grapheme'
 
-require_relative 'fold'
-
 module Strings
   module Wrap
     DEFAULT_WIDTH = 80
@@ -22,31 +20,30 @@ module Strings
     #   # => "Some \nlongish \ntext"
     #
     # @api public
-    def wrap(text, wrap_at = DEFAULT_WIDTH, separator: nil)
+    def wrap(text, wrap_at = DEFAULT_WIDTH, separator: NEWLINE)
       if text.scan(/[[:print:]]/).length < wrap_at.to_i || wrap_at.to_i.zero?
         return text
       end
+
       ansi_stack = []
-      sep = separator || text[LINE_BREAK] || NEWLINE
-      text.split(%r{#{LINE_BREAKS}}, -1).map do |paragraph|
-        format_paragraph(paragraph, wrap_at, ansi_stack)
-      end * sep
+      text.lines.map do |line|
+        format_line(line, wrap_at, ansi_stack).join(separator)
+      end.join
     end
     module_function :wrap
 
-    # Format paragraph to be maximum of wrap_at length
+    # Format line to be maximum of wrap_at length
     #
-    # @param [String] paragraph
-    #   the paragraph to format
+    # @param [String] text_line
+    #   the line to format
     # @param [Integer] wrap_at
-    #   the maximum length to wrap the paragraph
+    #   the maximum length to wrap the line
     #
     # @return [Array[String]]
     #   the wrapped lines
     #
     # @api private
-    def format_paragraph(paragraph, wrap_at, ansi_stack)
-      cleared_para = Fold.fold(paragraph)
+    def format_line(text_line, wrap_at, ansi_stack)
       lines = []
       line  = []
       word  = []
@@ -55,10 +52,10 @@ module Strings
       word_length = 0
       line_length = 0
       char_length = 0 # visible char length
-      text_length = display_width(cleared_para)
+      text_length = display_width(text_line)
       total_length = 0
 
-      UnicodeUtils.each_grapheme(cleared_para) do |char|
+      UnicodeUtils.each_grapheme(text_line) do |char|
         # we found ansi let's consume
         if char == Strings::ANSI::CSI || ansi.length > 0
           ansi << char
@@ -115,7 +112,7 @@ module Strings
       lines << insert_ansi(word.join, ansi_stack) unless word.empty?
       lines
     end
-    module_function :format_paragraph
+    module_function :format_line
 
     # Insert ANSI code into string
     #
@@ -151,7 +148,11 @@ module Strings
           matched_reset = false
           new_stack << ansi # keep the ansi
           next if ansi[1] == length
-          output.insert(-1, ansi_reset) # add reset at the end
+          if output.end_with?(NEWLINE)
+            output.insert(-2, ansi_reset)
+          else
+            output.insert(-1, ansi_reset) # add reset at the end
+          end
         end
 
         output.insert(ansi[1], ansi[0])

@@ -18,7 +18,6 @@ RSpec.describe Strings::Wrap, '.wrap' do
 
     it "wraps minimal width" do
       str = "#?%"
-
       val = Strings::Wrap.wrap(str, 1)
 
       expect(val).to eq([
@@ -36,17 +35,27 @@ RSpec.describe Strings::Wrap, '.wrap' do
       ].join("\n"))
     end
 
-    it "collapses multiple line breaks " do
+    it "wraps preserving newline characters" do
+      expect(Strings::Wrap.wrap("foo\n\n\nbar\r\n\r\nbaz\n", 3)).to eq([
+        "foo",
+        "\n\n\n",
+        "bar",
+        "\r\n\r\n",
+        "baz\n"
+      ].join)
+    end
+
+    it "preserves multiple line breaks " do
       text = "some \r\n\n\n\nunbreakable\n\n\n\n  \r\r\rcontent \t"
       expect(Strings::Wrap.wrap(text, 5)).to eq([
-        "some ",
+        "some \r\n\n\n",
         "unbre",
         "akabl",
-        "e",
+        "e\n\n\n",
         "  ",
-        "conte",
-        "nt "
-      ].join("\r\n"))
+        "\r\r\rcont",
+        "ent \t"
+      ].join("\n"))
     end
 
     it "preserves newlines" do
@@ -118,12 +127,12 @@ RSpec.describe Strings::Wrap, '.wrap' do
     it "preserves newlines for both prefix and postfix" do
       text = "\n\nラドクリフ、マラソン五輪代表に1万m出場にも含み\n\n\n"
       expect(Strings::Wrap.wrap(text, 10)).to eq([
-        "\nラドクリフ",
-        "、マラソン",
-        "五輪代表に",
-        "1万m出場に",
-        "も含み\n"
-      ].join("\n"))
+        "\n\nラドクリフ\n",
+        "、マラソン\n",
+        "五輪代表に\n",
+        "1万m出場に\n",
+        "も含み\n\n\n"
+      ].join)
     end
 
     it "handles \r\n line separator" do
