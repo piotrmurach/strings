@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'strings-ansi'
-require 'unicode/display_width'
-require 'unicode_utils/each_grapheme'
+require "strings-ansi"
+require "unicode/display_width"
+require "unicode_utils/each_grapheme"
 
 module Strings
   # A module responsible for text truncation
   module Truncate
-    DEFAULT_TRAILING = '…'.freeze
+    DEFAULT_TRAILING = "…".freeze
 
     DEFAULT_LENGTH = 30
 
@@ -32,10 +32,10 @@ module Strings
     #   Strings::Truncate.truncate(text, 20)
     #   # => "The sovereignest t…"
     #
-    #   Strings::Truncate.truncate(text, 20, separator: ' ' )
+    #   Strings::Truncate.truncate(text, 20, separator: " " )
     #   # => "The sovereignest…"
     #
-    #   Strings::Truncate.truncate(text, 40, trailing: '... (see more)' )
+    #   Strings::Truncate.truncate(text, 40, trailing: "... (see more)" )
     #   # => "The sovereignest thing on... (see more)"
     #
     # @api public

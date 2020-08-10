@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'strings-ansi'
-require 'unicode/display_width'
+require "strings-ansi"
+require "unicode/display_width"
 
 module Strings
   # Responsible for text alignment
   module Align
-    NEWLINE = "\n".freeze
-    SPACE = " ".freeze
+    NEWLINE = "\n"
+    SPACE = " "
     LINE_BREAK = %r{\r\n|\r|\n}.freeze
 
     # Aligns text within the width.
@@ -32,12 +32,13 @@ module Strings
     #   Strings::Align(text, 22, direction: :right)
     #   # => "      the madness of men"
     #
-    #   Strings::Align.align(text, 22, direction: :center, fill: '*')
+    #   Strings::Align.align(text, 22, direction: :center, fill: "*")
     #   # => "***the madness of men***"
     #
     # @api public
     def align(text, width, direction: :left, **options)
       return text if width.nil?
+
       method = to_alignment(direction)
       send(method, text, width, **options)
     end

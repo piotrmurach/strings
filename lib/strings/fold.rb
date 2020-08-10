@@ -20,7 +20,7 @@ module Strings
     def fold(text, separator = LINE_BREAK)
       text.gsub(/([ ]+)#{separator}/, "\\1")
           .gsub(/#{separator}(?<space>[ ]+)/, "\\k<space>")
-          .gsub(/#{separator}/, ' ')
+          .gsub(/#{separator}/, " ")
     end
     module_function :fold
   end # Fold

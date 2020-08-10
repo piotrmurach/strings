@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'strings-ansi'
-require 'unicode/display_width'
+require "strings-ansi"
+require "unicode/display_width"
 
-require_relative 'padder'
+require_relative "padder"
 
 module Strings
   # Responsible for text padding
   module Pad
-    NEWLINE = "\n".freeze
-    SPACE = " ".freeze
-    LINE_BREAK =  %r{\r\n|\r|\n}.freeze
+    NEWLINE = "\n"
+    SPACE = " "
+    LINE_BREAK = %r{\r\n|\r|\n}.freeze
 
     # Apply padding to multiline text with ANSI codes
     #
@@ -79,7 +79,7 @@ module Strings
     # @api private
     def max_line_length(text, separator)
       lines = text.split(separator, -1)
-      display_width(lines.max_by { |line| display_width(line) } || '')
+      display_width(lines.max_by { |line| display_width(line) } || "")
     end
     module_function :max_line_length
 

@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'strings-ansi'
+require "strings-ansi"
 
-require_relative 'strings/align'
-require_relative 'strings/fold'
-require_relative 'strings/pad'
-require_relative 'strings/truncate'
-require_relative 'strings/wrap'
-require_relative 'strings/version'
+require_relative "strings/align"
+require_relative "strings/fold"
+require_relative "strings/pad"
+require_relative "strings/truncate"
+require_relative "strings/wrap"
+require_relative "strings/version"
 
 module Strings
   # Align text within the width.

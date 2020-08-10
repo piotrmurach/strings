@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
-require 'strings-ansi'
-require 'unicode/display_width'
-require 'unicode_utils/each_grapheme'
+require "strings-ansi"
+require "unicode/display_width"
+require "unicode_utils/each_grapheme"
 
 module Strings
   module Wrap
     DEFAULT_WIDTH = 80
-    NEWLINE = "\n".freeze
-    SPACE = " ".freeze
+    NEWLINE = "\n"
+    SPACE = " "
     LINE_BREAK = %r{\r\n|\r|\n}.freeze
-    LINE_BREAKS = "\r\n+|\r+|\n+".freeze
+    LINE_BREAKS = "\r\n+|\r+|\n+"
 
     # Wrap a text into lines no longer than wrap_at length.
     # Preserves existing lines and existing word boundaries.

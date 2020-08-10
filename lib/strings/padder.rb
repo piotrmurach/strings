@@ -1,4 +1,4 @@
-# frozen_string_litera: true
+# frozen_string_literal: true
 
 module Strings
   # A class responsible for parsing padding value
@@ -45,7 +45,7 @@ module Strings
       elsif value.size == 4
         value
       else
-        raise ParseError, 'Wrong :padding parameter, must be an array'
+        raise ParseError, "Wrong :padding parameter, must be an array"
       end
     end
 
