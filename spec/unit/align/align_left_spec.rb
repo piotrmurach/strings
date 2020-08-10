@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings::Align, '#align_left' do
+RSpec.describe Strings::Align, "#align_left" do
   it "aligns line to left" do
     text = "the madness of men"
     expect(Strings::Align.align_left(text, 22)).to eq("the madness of men    ")
   end
 
   it "fills empty" do
-    expect(Strings::Align.align_left('', 22)).to eq("                      ")
+    expect(Strings::Align.align_left("", 22)).to eq("                      ")
   end
 
   it "left justifies string with unicode characters" do
@@ -52,7 +52,7 @@ RSpec.describe Strings::Align, '#align_left' do
 
   it "left justifies multiline text with fill of '*'" do
     text = "for there is no folly of the beast\nof the earth which\nis not infinitely\noutdone by the madness of men"
-    expect(Strings::Align.align_left(text, 40, fill: '*')).to eq([
+    expect(Strings::Align.align_left(text, 40, fill: "*")).to eq([
      "for there is no folly of the beast******\n",
      "of the earth which**********************\n",
      "is not infinitely***********************\n",

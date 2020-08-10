@@ -1,12 +1,12 @@
 # frozen_string_literal:true
 
-RSpec.describe Strings::Padder, '#parse' do
+RSpec.describe Strings::Padder, "#parse" do
   it "parses nil" do
     instance = Strings::Padder.parse(nil)
     expect(instance.padding).to eq([])
   end
 
-  it 'parses self' do
+  it "parses self" do
     value = Strings::Padder.new([])
     instance = Strings::Padder.parse(value)
     expect(instance.padding).to eq([])

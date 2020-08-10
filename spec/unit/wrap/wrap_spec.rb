@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings::Wrap, '.wrap' do
-  context 'when unicode' do
-    let(:text) { 'ラドクリフ、マラソン五輪代表に1万m出場にも含み' }
+RSpec.describe Strings::Wrap, ".wrap" do
+  context "when unicode" do
+    let(:text) { "ラドクリフ、マラソン五輪代表に1万m出場にも含み" }
 
     it "doesn't wrap at zero length" do
       expect(Strings::Wrap.wrap(text, 0)).to eq(text)
@@ -28,7 +28,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
     end
 
     it "wraps correctly unbreakable words" do
-      expect(Strings::Wrap.wrap('foobar1', 3)).to eq([
+      expect(Strings::Wrap.wrap("foobar1", 3)).to eq([
         "foo",
         "bar",
         "1"
@@ -84,7 +84,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
       ].join("\n"))
     end
 
-    it 'wraps at 8 characters' do
+    it "wraps at 8 characters" do
       expect(Strings::Wrap.wrap(text, 8)).to eq([
         "ラドクリ",
         "フ、マラ",
@@ -95,7 +95,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
       ].join("\n"))
     end
 
-    it 'preserves whitespace' do
+    it "preserves whitespace" do
       text = "  As for me,   I am    tormented with   an everlasting   itch for   things remote.  "
       expect(Strings::Wrap.wrap(text, 10)).to eq([
         "  As for ",
@@ -113,7 +113,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
     end
   end
 
-  context 'when long text' do
+  context "when long text" do
     it "wraps long text at 45 characters" do
       text =
       "What of it, if some old hunks of a sea-captain orders me to get a broom and sweep down the decks? What does that indignity amount to, weighed, I mean, in the scales of the New Testament? Do you think the archangel Gabriel thinks anything the less of me, because I promptly and respectfully obey that old hunks in that particular instance? Who ain't a slave? Tell me that. Well, then, however the old sea-captains may order me about--however they may thump and punch me about, I have the satisfaction of knowing that it is all right;"
@@ -123,7 +123,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
     end
   end
 
-  context 'with newlines' do
+  context "with newlines" do
     it "preserves newlines for both prefix and postfix" do
       text = "\n\nラドクリフ、マラソン五輪代表に1万m出場にも含み\n\n\n"
       expect(Strings::Wrap.wrap(text, 10)).to eq([
@@ -141,7 +141,7 @@ RSpec.describe Strings::Wrap, '.wrap' do
     end
   end
 
-  context 'with ANSI codes' do
+  context "with ANSI codes" do
     it "wraps ANSI chars" do
       text = "\e[32;44mIgnorance is the parent of fear.\e[0m"
       expect(Strings::Wrap.wrap(text, 14)).to eq([

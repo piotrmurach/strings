@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings, '#align' do
+RSpec.describe Strings, "#align" do
   it "aligns text" do
     text = "the madness of men"
     expect(Strings.align(text, 22, direction: :center)).to eq("  the madness of men  ")

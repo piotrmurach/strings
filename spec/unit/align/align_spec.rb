@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings::Align, '#align' do
+RSpec.describe Strings::Align, "#align" do
   it "doesn't align unrecognized direction" do
     text = "the madness of men"
     expect {
@@ -9,7 +9,7 @@ RSpec.describe Strings::Align, '#align' do
   end
 
   it "fills empty" do
-    expect(Strings::Align.align('', 22, direction: :center)).to eq("                      ")
+    expect(Strings::Align.align("", 22, direction: :center)).to eq("                      ")
   end
 
   it "centers line" do

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings::Pad, '#pad' do
+RSpec.describe Strings::Pad, "#pad" do
   it "pads content with padding as a single value" do
     text = "Ignorance is the parent of fear."
     expect(Strings::Pad.pad(text, 1)).to eq([

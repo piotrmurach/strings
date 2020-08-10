@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-RSpec.describe Strings::Align, '#align_right' do
+RSpec.describe Strings::Align, "#align_right" do
   it "aligns line to right" do
     text = "the madness of men"
     expect(Strings::Align.align_right(text, 22)).to eq("    the madness of men")
   end
 
   it "fills empty" do
-    expect(Strings::Align.align_right('', 22)).to eq("                      ")
+    expect(Strings::Align.align_right("", 22)).to eq("                      ")
   end
 
   it "aligns string to the right with unicode characters" do

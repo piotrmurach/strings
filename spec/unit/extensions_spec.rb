@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'strings/extensions'
+require "strings/extensions"
 
 using Strings::Extensions
 
@@ -24,11 +24,11 @@ RSpec.describe Strings::Extensions do
   end
 
   it "removes ansi codes" do
-    expect("\e[33mfoo\e[0m".sanitize).to eq('foo')
+    expect("\e[33mfoo\e[0m".sanitize).to eq("foo")
   end
 
   it "folds a line" do
-    expect("foo\n\nbar\n".fold).to eq('foo bar ')
+    expect("foo\n\nbar\n".fold).to eq("foo bar ")
   end
 
   it "pads a line" do
@@ -71,7 +71,7 @@ RSpec.describe Strings::Extensions do
   end
 
   it "wraps a line" do
-    expect('foobar1'.wrap(3)).to eq("foo\nbar\n1")
+    expect("foobar1".wrap(3)).to eq("foo\nbar\n1")
   end
 end
 

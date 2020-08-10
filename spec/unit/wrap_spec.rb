@@ -1,8 +1,8 @@
-# encoding: utf-8
+# frozen_string_literal: true
 
-RSpec.describe Strings, '#wrap' do
+RSpec.describe Strings, "#wrap" do
   it "wraps text" do
-    text = 'ラドクリフ、マラソン五輪代表に1万m出場にも含み'
+    text = "ラドクリフ、マラソン五輪代表に1万m出場にも含み"
     expect(Strings.wrap(text, 8)).to eql([
       "ラドクリ",
       "フ、マラ",
