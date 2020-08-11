@@ -5,6 +5,7 @@
 ### Changed
 * Change String#wrap to preserve newline character breaks
 * Change gemspec to remove test artefacts and bundler dev dependency
+* Change gemspec to require Ruby >= 2.0.0
 
 ## [v0.1.8] - 2019-11-24
 
