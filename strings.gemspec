@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version       = Strings::VERSION
   spec.authors       = ["Piotr Murach"]
   spec.email         = ["piotr@piotrmurach.com"]
-  spec.summary       = %q{A set of functions for transforming strings.}
-  spec.description   = %q{A set of functions such as fold, truncate, wrap and more for transforming strings.}
+  spec.summary       = %q{A set of methods for working with strings.}
+  spec.description   = %q{A set of methods for working with strings such as align, truncate, wrap and many more.}
   spec.homepage      = "https://github.com/piotrmurach/strings"
   spec.license       = "MIT"
 
