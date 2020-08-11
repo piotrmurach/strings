@@ -1,9 +1,9 @@
 # Change log
 
-## [v0.1.9] - 2020-08-10
+## [v0.2.0] - 2020-08-11
 
 ### Changed
-* Change #wrap to preserve newline character breaks
+* Change String#wrap to preserve newline character breaks
 * Change gemspec to remove test artefacts and bundler dev dependency
 
 ## [v0.1.8] - 2019-11-24
@@ -59,7 +59,7 @@
 
 * Initial implementation and release
 
-[v0.1.9]: https://github.com/piotrmurach/strings/compare/v0.1.8...v0.1.9
+[v0.2.0]: https://github.com/piotrmurach/strings/compare/v0.1.8...v0.2.0
 [v0.1.8]: https://github.com/piotrmurach/strings/compare/v0.1.7...v0.1.8
 [v0.1.7]: https://github.com/piotrmurach/strings/compare/v0.1.6...v0.1.7
 [v0.1.6]: https://github.com/piotrmurach/strings/compare/v0.1.5...v0.1.6
