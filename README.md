@@ -293,7 +293,7 @@ To wrap text into lines no longer than `wrap_at` argument length, the `wrap` met
 Given the following text:
 
 ```ruby
-text "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
+text = "Think not, is my eleventh commandment; and sleep when you can, is my twelfth."
 ```
 
 Then to wrap the text to given length do:
