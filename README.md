@@ -261,7 +261,7 @@ Strings::Truncate.truncate(text, 20) # => "for there is no fol…"
 If you want to split words on their boundaries use `:separator` option:
 
 ```ruby
-Strings.truncate(text, 20) # => "for there is no…"
+Strings.truncate(text, 20, separator: ' ') # => "for there is no…"
 ```
 
 Use `:trailing` option (by default `…`) to provide omission characters:
