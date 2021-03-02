@@ -375,10 +375,11 @@ using Strings::Extensions
 
 |  Component   | Description | API docs |
 | ------------ | ----------- | -------- |
-| [strings-ansi](https://github.com/piotrmurach/strings-ansi) | Handle ANSI escape codes in strings. | [docs](http://www.rubydoc.info/gems/strings-ansi) |
-| [strings-case](https://github.com/piotrmurach/strings-case) | Handle case transformations in strings. | [docs](http://www.rubydoc.info/gems/strings-case) |
-| [strings-inflection](https://github.com/piotrmurach/strings-inflection) | Inflects English nouns and verbs. | [docs](http://www.rubydoc.info/gems/strings-inflection) |
-| [strings-numeral](https://github.com/piotrmurach/strings-numeral) | Express numbers as word numerals. | [docs](http://www.rubydoc.info/gems/strings-numeral) |
+| [strings-ansi](https://github.com/piotrmurach/strings-ansi) | Handle ANSI escape codes in strings. | [docs](https://www.rubydoc.info/gems/strings-ansi) |
+| [strings-case](https://github.com/piotrmurach/strings-case) | Handle case transformations in strings. | [docs](https://www.rubydoc.info/gems/strings-case) |
+| [strings-inflection](https://github.com/piotrmurach/strings-inflection) | Inflects English nouns and verbs. | [docs](https://www.rubydoc.info/gems/strings-inflection) |
+| [strings-numeral](https://github.com/piotrmurach/strings-numeral) | Express numbers as word numerals. | [docs](https://www.rubydoc.info/gems/strings-numeral) |
+| [strings-truncation](https://github.com/piotrmurach/strings-truncation) | Truncate strings with fullwidth characters and ANSI codes. | [docs](https://www.rubydoc.info/gems/strings-truncation) |
 
 ## Development
 
