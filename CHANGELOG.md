@@ -1,5 +1,10 @@
 # Change log
 
+## [v0.2.1] - unreleased
+
+### Changed
+* Change to relax unicode-display_width version constraint to allow 2.0 release
+
 ## [v0.2.0] - 2020-08-11
 
 ### Changed
@@ -60,6 +65,7 @@
 
 * Initial implementation and release
 
+[v0.2.1]: https://github.com/piotrmurach/strings/compare/v0.2.0...v0.2.1
 [v0.2.0]: https://github.com/piotrmurach/strings/compare/v0.1.8...v0.2.0
 [v0.1.8]: https://github.com/piotrmurach/strings/compare/v0.1.7...v0.1.8
 [v0.1.7]: https://github.com/piotrmurach/strings/compare/v0.1.6...v0.1.7
