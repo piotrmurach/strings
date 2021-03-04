@@ -5,14 +5,14 @@
 # Strings
 
 [![Gem Version](https://badge.fury.io/rb/strings.svg)][gem]
-[![Build Status](https://secure.travis-ci.org/piotrmurach/strings.svg?branch=master)][travis]
+[![Actions CI](https://github.com/piotrmurach/strings/workflows/CI/badge.svg?branch=master)][gh_actions_ci]
 [![Build status](https://ci.appveyor.com/api/projects/status/e11tn1fgjwnfwp3r?svg=true)][appveyor]
 [![Maintainability](https://api.codeclimate.com/v1/badges/4ca50e480f42af80678e/maintainability)][codeclimate]
 [![Coverage Status](https://coveralls.io/repos/github/piotrmurach/strings/badge.svg?branch=master)][coverage]
 [![Inline docs](http://inch-ci.org/github/piotrmurach/strings.svg?branch=master)][inchpages]
 
 [gem]: http://badge.fury.io/rb/strings
-[travis]: http://travis-ci.org/piotrmurach/strings
+[gh_actions_ci]: https://github.com/piotrmurach/strings/actions?query=workflow%3ACI
 [appveyor]: https://ci.appveyor.com/project/piotrmurach/strings
 [codeclimate]: https://codeclimate.com/github/piotrmurach/strings/maintainability
 [coverage]: https://coveralls.io/github/piotrmurach/strings?branch=master
