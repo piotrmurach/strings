@@ -1,6 +1,6 @@
 # Change log
 
-## [v0.2.1] - unreleased
+## [v0.2.1] - 2021-03-09
 
 ### Changed
 * Change to relax unicode-display_width version constraint to allow 2.0 release
