@@ -63,7 +63,13 @@ RSpec.describe Strings::Truncate, "#truncate" do
   it "correctly truncates with ANSI characters" do
     text = "I try \e[34mall things\e[0m, I achieve what I can"
     truncation = Strings::Truncate.truncate(text, 18)
-    expect(truncation).to eq("I try \e[34mall things\e[0m,\e[0m…")
+    expect(truncation).to eq("I try \e[34mall things\e[0m,…")
+  end
+
+  it "correctly truncates with multiple ANSI character usages" do
+    text = "I try \e[34mall things\e[0m, I \e[32machieve\e[0m what I can"
+    truncation = Strings::Truncate.truncate(text, 29)
+    expect(truncation).to eq("I try \e[34mall things\e[0m, I \e[32machieve\e[0m …")
   end
 
   it "finishes on word boundary" do
@@ -74,8 +80,13 @@ RSpec.describe Strings::Truncate, "#truncate" do
 
   it "returns the correct number of characters" do
     text = "I try all things, I achieve what I can"
-    trunc_length = 14
-    truncated_text = Strings::Truncate.truncate(text, trunc_length)
-    expect(truncated_text.length).to eq(trunc_length)
+    truncated_text = Strings::Truncate.truncate(text, 14)
+    expect(truncated_text.length).to eq(14)
+  end
+
+  it "returns the correct number of wide-characters" do
+    text = "真剣だど、知恵が出る"
+    truncated_text = Strings::Truncate.truncate(text, 14)
+    expect(truncated_text.length).to be(7)
   end
 end

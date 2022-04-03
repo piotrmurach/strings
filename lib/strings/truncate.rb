@@ -77,15 +77,22 @@ module Strings
         char = chars.shift
         break unless char
         while orig_char != char # consume ansi
-          ansi = true
-          truncated << orig_char
+          next_four_chars = orig_char + original_chars[0..2].join
+          if next_four_chars == Strings::ANSI::RESET
+            ansi = false
+            truncated << [Strings::ANSI::RESET]
+            original_chars.shift(3) # Skip rest of ANSI reset code
+          else
+            ansi = true
+            truncated << orig_char
+          end
           orig_char = original_chars.shift
         end
         truncated << char
         char_width = display_width(char)
         length_without_trailing -= char_width
       end
-      truncated << ["\e[0m"] if ansi
+      truncated << [Strings::ANSI::RESET] if ansi
       truncated
     end
     module_function :shorten
