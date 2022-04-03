@@ -7,7 +7,7 @@ RSpec.describe Strings::Truncate, "#truncate" do
     expect(Strings::Truncate.truncate(text, 0)).to eq(text)
   end
 
-  it "doensn't change text for nil length" do
+  it "doesn't change text for nil length" do
     expect(Strings::Truncate.truncate(text, nil)).to eq(text)
   end
 
@@ -57,18 +57,25 @@ RSpec.describe Strings::Truncate, "#truncate" do
   it "truncates text with custom trailing" do
     trailing = "... (see more)"
     truncation = Strings::Truncate.truncate(text, 20, trailing: trailing)
-    expect(truncation).to eq("ラド#{trailing}")
+    expect(truncation).to eq("ラドク#{trailing}")
   end
 
   it "correctly truncates with ANSI characters" do
     text = "I try \e[34mall things\e[0m, I achieve what I can"
     truncation = Strings::Truncate.truncate(text, 18)
-    expect(truncation).to eq("I try \e[34mall things\e[0m…")
+    expect(truncation).to eq("I try \e[34mall things\e[0m,\e[0m…")
   end
 
   it "finishes on word boundary" do
     text = "for there is no folly of the beast of the earth"
     truncation = Strings::Truncate.truncate(text, 20, separator: " ")
     expect(truncation).to eq("for there is no…")
+  end
+
+  it "returns the correct number of characters" do
+    text = "I try all things, I achieve what I can"
+    trunc_length = 14
+    truncated_text = Strings::Truncate.truncate(text, trunc_length)
+    expect(truncated_text.length).to eq(trunc_length)
   end
 end

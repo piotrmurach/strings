@@ -57,12 +57,12 @@ RSpec.describe Strings::Extensions do
 
   it "truncates a line" do
     text = "the madness of men"
-    expect(text.truncate(10)).to eq("the madn…")
+    expect(text.truncate(10)).to eq("the madne…")
   end
 
   it "truncates a line with a custom trailing" do
     text = "the madness of men"
-    expect(text.truncate(10, trailing: "...")).to eq("the ma...")
+    expect(text.truncate(10, trailing: "...")).to eq("the mad...")
   end
 
   it "truncates into words with a custom trailing" do

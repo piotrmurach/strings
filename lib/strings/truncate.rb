@@ -11,7 +11,7 @@ module Strings
 
     DEFAULT_LENGTH = 30
 
-    # Truncate a text at a given length (defualts to 30)
+    # Truncate a text at a given length (defaults to 30)
     #
     # @param [String] text
     #   the text to be truncated
@@ -72,7 +72,7 @@ module Strings
       truncated = []
       return truncated if length_without_trailing.zero?
       char_width = display_width(chars[0])
-      while length_without_trailing - char_width > 0
+      while length_without_trailing - char_width >= 0
         orig_char = original_chars.shift
         char = chars.shift
         break unless char
