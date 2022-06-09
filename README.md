@@ -237,6 +237,8 @@ Strings::ANSI.sanitize("\e[33;44mfoo\e[0m")
 
 ### 2.6 truncate
 
+Please note this API will change in the next release and will be replaced by the `strings-truncation` component. See the [Components](#4-components) section for more information.
+
 You can truncate a given text after a given length with `truncate` method.
 
 Given the following text:
